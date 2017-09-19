@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.form.js"></script>
+    <script>
+        $(function () {
+
+            $("#sendPhoneVa").click(function () {
+                var username = $("#username_phone").val();
+                $.ajax({
+                    url: "user/sendcode/" + username,
+                    type: "post",
+                    success: function (result) {
+                        console.log(result);
+                    }
+                });
+            });
+
+            $("#forget_pass").click(function () {
+                var username = $("#froget_username").val();
+                $.ajax({
+                    url: "user/forgetPassword",
+                    data: "username=" + username,
+                    type: "post",
+                    success: function (result) {
+                        console.log(result);
+                    }
+                });
+            })
+
+            $("#forget_pass_update").click(function () {
+                var code = $("#froget_code").val();
+                var password = $("#froget_password").val();
+                $.ajax({
+                    url: "user/findpassword",
+                    data: {
+                        "code": code,
+                        "password": password
+                    },
+                    type: "post",
+                    success: function (result) {
+                        console.log(result);
+                    }
+                });
+            })
+
+            $("#reg").click(function () {
+                $.ajax({
+                    url: "user/register",
+                    type: "post",
+                    data: $("#regForm").serialize(),
+                    success: function (result) {
+                        console.log(result);
+                    }
+
+                });
+            });
+
+            $("#log").click(function () {
+                $.ajax({
+                    url: "user/login",
+                    type: "post",
+                    data: $("#logForm").serialize(),
+                    success: function (result) {
+                        console.log(result);
+                        if (result.extend.user.info.headerImg != null) {
+                            $("#srcImg").attr("src", "http://localhost:8080/loanimg/" + result.extend.user.info.headerImg);
+                        }
+                        if (result.extend.user.info.gender == 0) {
+                            $("#genderWoman").prop("checked", true);
+                        } else {
+                            $("#genderMan").prop("checked", true);
+                        }
+                        $("#realName").val(result.extend.user.info.realName);
+                        $("#phone").val(result.extend.user.info.phone);
+                        $("#addr").val(result.extend.user.info.addr);
+                        $("#email").val(result.extend.user.info.email);
+                    }
+                });
+            });
+
+            $("#info").click(function () {
+                $.ajax({
+                    url: "user/perfectInfo",
+                    type: "post",
+                    data: $("#saveinfo").serialize(),
+                    success: function (result) {
+                        console.log(result);
+                    }
+                });
+            });
+
+            var options = {
+                success: function (data) {
+                    console.log(data);
+                    $("#srcImg").attr("src", "http://localhost:8080/loanimg/" + data.extend.imgSrc);
+                }
+            };
+
+            $("#uploadForm").ajaxForm(options);
+            // ajaxSubmit
+            $("#uploadImg").click(function () {
+                $("#uploadForm").ajaxSubmit(options);
+            });
+
+            $("#ctbb").click(function () {
+                console.log($("#ct input[type=text]").val());
+            })
+        })
+    </script>
+</head>
+<body>
+<p>我要注册</p>
+<form id="regForm">
+    手机号码<input type="text" name="username" id="username_phone"/><br/>
+    <input type="button" value="发送手机验证码" id="sendPhoneVa"/><br/>
+    password<input type="password" name="password"/><br/>
+    conpassword<input type="password" name="conpassword"/><br/>
+    手机验证码:<input type="text" name="code"/>
+    <input type="button" value="注册" id="reg"/>
+</form>
+<hr/>
+<p>我要登录</p>
+<form id="logForm">
+    username<input type="text" name="username"/><br/>
+    password<input type="password" name="password"/><br/>
+    验证码:<input type="text" name="code"/>
+    <div style="float: left;">
+        <i>
+            <img style="height: 22px;" id="codeImg" alt="点击更换" title="点击更换"
+                 src="code/captcha-image" onclick="this.src='/code/captcha-image?d='+new Date()*1"/>
+        </i>
+    </div>
+    <input type="button" value="登录" id="log"/>
+</form>
+<hr/>
+
+<p>设置头像（异步）</p>
+<form method="POST" enctype="multipart/form-data" id="uploadForm" action="user/uploadHeaderImg">
+
+    文件：<input type="file" name="headerImgFile"/>
+    <input type="button" value="上传" id="uploadImg"/>
+</form>
+<img alt="登录后显示头像" src="" id="srcImg"/>
+<p>完善信息</p>
+<form id="saveinfo">
+    男<input type="radio" name="gender" value="1" id="genderMan"/>
+    女<input type="radio" name="gender" value="0" id="genderWoman"/>
+    <br/>
+    real_name:<input type="text" name="realName" id="realName"/><br/>
+    email:<input type="text" name="email" id="email"/><br/>
+    addr:<input type="text" name="addr" id="addr"/><br/>
+
+
+    <input type="button" value="完善信息" id="info"/>
+</form>
+<hr/>
+
+<form>
+    手机号码<input type="text" id="froget_username"/><br/>
+
+    <input type="button" value="提交" id="forget_pass"/>
+</form>
+
+<form>
+    手机验证码:<input type="text" id="froget_code"/>
+    密码：<input type="password" id="froget_password"/><br/>
+    <input type="button" value="提交" id="forget_pass_update"/>
+</form>
+
+
+</body>
+</html>
