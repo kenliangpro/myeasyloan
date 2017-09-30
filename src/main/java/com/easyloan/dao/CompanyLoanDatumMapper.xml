@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.easyloan.dao.CompanyLoanDatumMapper" >
+  <resultMap id="BaseResultMap" type="com.easyloan.bean.CompanyLoanDatum" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="company_file" property="companyFile" jdbcType="VARCHAR" />
+    <result column="mortgage_file" property="mortgageFile" jdbcType="VARCHAR" />
+    <result column="loan_details" property="loanDetails" jdbcType="VARCHAR" />
+    <result column="total_invest" property="totalInvest" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, company_file, mortgage_file, loan_details, total_invest
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.easyloan.bean.CompanyLoanDatumExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from loan_company_loandatum
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from loan_company_loandatum
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from loan_company_loandatum
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.easyloan.bean.CompanyLoanDatumExample" >
+    delete from loan_company_loandatum
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.easyloan.bean.CompanyLoanDatum" >
+    insert into loan_company_loandatum (id, company_file, mortgage_file, 
+      loan_details, total_invest)
+    values (#{id,jdbcType=VARCHAR}, #{companyFile,jdbcType=VARCHAR}, #{mortgageFile,jdbcType=VARCHAR}, 
+      #{loanDetails,jdbcType=VARCHAR}, #{totalInvest,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.easyloan.bean.CompanyLoanDatum" >
+    insert into loan_company_loandatum
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="companyFile != null" >
+        company_file,
+      </if>
+      <if test="mortgageFile != null" >
+        mortgage_file,
+      </if>
+      <if test="loanDetails != null" >
+        loan_details,
+      </if>
+      <if test="totalInvest != null" >
+        total_invest,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="companyFile != null" >
+        #{companyFile,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageFile != null" >
+        #{mortgageFile,jdbcType=VARCHAR},
+      </if>
+      <if test="loanDetails != null" >
+        #{loanDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="totalInvest != null" >
+        #{totalInvest,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.easyloan.bean.CompanyLoanDatumExample" resultType="java.lang.Integer" >
+    select count(*) from loan_company_loandatum
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update loan_company_loandatum
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyFile != null" >
+        company_file = #{record.companyFile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mortgageFile != null" >
+        mortgage_file = #{record.mortgageFile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanDetails != null" >
+        loan_details = #{record.loanDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalInvest != null" >
+        total_invest = #{record.totalInvest,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update loan_company_loandatum
+    set id = #{record.id,jdbcType=VARCHAR},
+      company_file = #{record.companyFile,jdbcType=VARCHAR},
+      mortgage_file = #{record.mortgageFile,jdbcType=VARCHAR},
+      loan_details = #{record.loanDetails,jdbcType=VARCHAR},
+      total_invest = #{record.totalInvest,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.easyloan.bean.CompanyLoanDatum" >
+    update loan_company_loandatum
+    <set >
+      <if test="companyFile != null" >
+        company_file = #{companyFile,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageFile != null" >
+        mortgage_file = #{mortgageFile,jdbcType=VARCHAR},
+      </if>
+      <if test="loanDetails != null" >
+        loan_details = #{loanDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="totalInvest != null" >
+        total_invest = #{totalInvest,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.easyloan.bean.CompanyLoanDatum" >
+    update loan_company_loandatum
+    set company_file = #{companyFile,jdbcType=VARCHAR},
+      mortgage_file = #{mortgageFile,jdbcType=VARCHAR},
+      loan_details = #{loanDetails,jdbcType=VARCHAR},
+      total_invest = #{totalInvest,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

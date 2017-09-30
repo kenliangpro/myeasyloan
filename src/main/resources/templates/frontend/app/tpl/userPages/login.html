@@ -1,0 +1,81 @@
+ <!--breadcrumbs start-->
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-sm-4">
+                    <h1>Login</h1>
+                </div>
+                <div class="col-lg-8 col-sm-8">
+                    <ol class="breadcrumb pull-right">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">Login</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs end-->
+
+    <!--container start-->
+    <div class="login-bg">
+        <div class="container">
+            <div class="form-wrapper">
+            <form class="form-signin wow fadeInUp" action="index.html">
+            <h2 class="form-signin-heading">个人用户登录</h2>
+            
+            <div class="login-wrap">
+                <input type="text" class="form-control" placeholder="手机号码" id="username" name="username" autofocus>
+                <input type="password" class="form-control" placeholder="密码" id="password" name="password">
+
+                <div>
+                    <i>
+                        <img style="height: 35px;" id="codeImg" alt="点击更换" title="点击更换"
+                        src="/code/captcha-image" onclick="this.src='/code/captcha-image?d='+new Date()*1"/>
+                    </i>
+                    <input type="text" class="form-control" placeholder="验证码" id="code" name="verification_code" style="width: 180px;float: right">
+
+                </div>
+
+                <div>
+                <label class="checkbox" >
+                    <!--<input type="checkbox" value="remember-me" style=""> Remember me-->
+                    <!--<span class="pull-right">-->
+                        <a data-toggle="modal" data-target="#forgetPass" style="cursor:pointer"> 忘记密码?</a>
+                    <!--</span>-->
+
+                </label>
+                </div>
+                <button class="btn btn-lg btn-login btn-block" type="button" id="loginSubmit">登录</button>
+
+                <div class="registration">
+                    Don't have an account yet?
+                    <a class="" href="#/register">
+                        Create an account
+                    </a>
+                </div>
+            </div>
+          </form>
+          </div>
+        </div>
+    </div>
+    <!--container end-->
+
+
+    <!-- 模态框（Modal） -->
+<div class="modal fade" id="forgetPass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">
+                <span  class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                忘记密码</h4>
+            </div>
+            <div class="modal-body">在这里添加一些文本</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>

@@ -1,80 +1,103 @@
 package com.easyloan.bean;
 
 public class UserInfo {
-	private String id;
+    private String id;
 
-	private Integer gender;
+    private Integer gender;
 
-	private String realName;
+    private String realName;
 
-	private String headerImg;
+    private String headerImg;
 
-	private String email;
+    private String email;
 
-	private String addr;
+    private String addr;
 
-	private String phone;
+    private String phone;
 
-	public String getId() {
-		return id;
-	}
+    private String idNumber;
 
-	public void setId(String id) {
-		this.id = id == null ? null : id.trim();
-	}
+    private String idNumberImg;
 
-	public Integer getGender() {
-		return gender;
-	}
+    private Integer status;
 
-	public void setGender(Integer gender) {
-		this.gender = gender;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getRealName() {
-		return realName;
-	}
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
+    }
 
-	public void setRealName(String realName) {
-		this.realName = realName == null ? null : realName.trim();
-	}
+    public Integer getGender() {
+        return gender;
+    }
 
-	public String getHeaderImg() {
-		return headerImg;
-	}
+    public void setGender(Integer gender) {
+        this.gender = gender;
+    }
 
-	public void setHeaderImg(String headerImg) {
-		this.headerImg = headerImg == null ? null : headerImg.trim();
-	}
+    public String getRealName() {
+        return realName;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setRealName(String realName) {
+        this.realName = realName == null ? null : realName.trim();
+    }
 
-	public void setEmail(String email) {
-		this.email = email == null ? null : email.trim();
-	}
+    public String getHeaderImg() {
+        return headerImg;
+    }
 
-	public String getAddr() {
-		return addr;
-	}
+    public void setHeaderImg(String headerImg) {
+        this.headerImg = headerImg == null ? null : headerImg.trim();
+    }
 
-	public void setAddr(String addr) {
-		this.addr = addr == null ? null : addr.trim();
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone == null ? null : phone.trim();
-	}
+    public String getAddr() {
+        return addr;
+    }
 
-	@Override
-	public String toString() {
-		return "UserInfo [id=" + id + ", gender=" + gender + ", realName=" + realName + ", headerImg=" + headerImg
-				+ ", email=" + email + ", addr=" + addr + ", phone=" + phone + "]";
-	}
+    public void setAddr(String addr) {
+        this.addr = addr == null ? null : addr.trim();
+    }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
+    }
+
+    public String getIdNumber() {
+        return idNumber;
+    }
+
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber == null ? null : idNumber.trim();
+    }
+
+    public String getIdNumberImg() {
+        return idNumberImg;
+    }
+
+    public void setIdNumberImg(String idNumberImg) {
+        this.idNumberImg = idNumberImg == null ? null : idNumberImg.trim();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 }

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>我要借款</title>
+    <script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.form.js"></script>
+
+    <script>
+
+        $(function () {
+
+
+            $("#plan").click(function () {
+                var loan_amount = $("#loan_amount").val();
+                var loan_tern = $("#loan_tern").val();
+                var totalInvest;
+                $.ajax({
+                    url: "/personalLoan/checkPlan",
+                    data: {
+                        "principal": loan_amount,
+                        "totalMonth": loan_tern
+                    },
+                    type: "post",
+                    success: function (data) {
+                        console.log(data);
+                        $("#loanplan").empty();
+                        $.each(data.list, function (index, item) {
+                            $("#loanplan").append(item.detailsMonth + " 利息：" + item.perMonthInvest +
+                                " 每月本金:" + item.perMonthPrincipal +
+                                " 总额:" + (item.perMonthInvest + item.perMonthPrincipal) + "<br/>");
+                            totalInvest = item.totalInvest;
+                        })
+                        $("#totalInvest").text(totalInvest);
+                    }
+                });
+            });
+
+
+            $("#next").click(function () {
+                var loan_amount = $("#loan_amount").val();
+                var loan_tern = $("#loan_tern").val();
+                $.ajax({
+                    url: "/vocational/checkIsCertification",
+                    data: {
+                        "principal": loan_amount,
+                        "totalMonth": loan_tern
+                    },
+                    type: "post",
+                    success: function (data) {
+                        console.log(data);
+                        if(data.state == 1) {
+                            window.location.href = "/personalLoan/toNextStep";
+                        }
+
+                    }
+                });
+            });
+
+
+
+
+        });
+    </script>
+</head>
+<body>
+<form>
+    (借1000用一天利息0.04%)<br/>
+    借多少<input type="text" name="loan_amount" id="loan_amount"/><br/>
+    借多久<input type="text" name="loan_tern" id="loan_tern"/><br/>
+    怎么还<input type="button" id="plan" value="查看贷款计划"/><br/>
+    总利息:<span id="totalInvest"></span>
+    <div id="loanplan"></div>
+    <input type="button" id="next" value="下一步"/>
+
+
+
+</form>
+
+<!--<p>下一步</p>-->
+<!--<form method="POST" enctype="multipart/form-data" id="uploadForm" action="/personalLoan/personalLoanExecution">-->
+    <!--文件1：<input type="file" name="loanDatums"/><br/>-->
+    <!--文件2：<input type="file" name="loanDatums"/><br/>-->
+    <!--name:<input type="text" name="name"/><br/>-->
+    <!--phone:<input type="text" name="phone"/><br/>-->
+    <!--addr:<input type="text" name="addr"/><br/>-->
+    <!--银行卡号:<input type="text" name="creditCard"/>-->
+    <!--&lt;!&ndash;支付密码：<input type="password" name="paymentPassword"/>&ndash;&gt;-->
+
+
+    <!--<input type="submit" value="进行借贷" id="uploadImg"/>-->
+<!--</form>-->
+</body>
+</html>

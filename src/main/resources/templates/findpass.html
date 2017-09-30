@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.form.js"></script>
+    <script>
+
+        $("#forget_pass_update").click(function () {
+            var code = $("#froget_code").val();
+            var password = $("#froget_password").val();
+            $.ajax({
+                url: "user/findpassword",
+                data: {
+                    "code": code,
+                    "password": password
+                },
+                type: "post",
+                success: function (result) {
+                    console.log(result);
+                }
+            });
+        })
+
+    </script>
+    <title>找回密码</title>
+</head>
+<body>
+
+    <form>
+        手机验证码:<input type="text" id="froget_code"/>
+        密码：<input type="password" id="froget_password"/><br/>
+        <input type="button" value="提交" id="forget_pass_update"/>
+    </form>
+
+</body>
+</html>

@@ -5,6 +5,10 @@ public class BorrowDatum {
 
     private String borrowFile;
 
+    private String borrowDetails;
+
+    private Double totalInvest;
+
     public String getId() {
         return id;
     }
@@ -19,5 +23,21 @@ public class BorrowDatum {
 
     public void setBorrowFile(String borrowFile) {
         this.borrowFile = borrowFile == null ? null : borrowFile.trim();
+    }
+
+    public String getBorrowDetails() {
+        return borrowDetails;
+    }
+
+    public void setBorrowDetails(String borrowDetails) {
+        this.borrowDetails = borrowDetails == null ? null : borrowDetails.trim();
+    }
+
+    public Double getTotalInvest() {
+        return totalInvest;
+    }
+
+    public void setTotalInvest(Double totalInvest) {
+        this.totalInvest = totalInvest;
     }
 }

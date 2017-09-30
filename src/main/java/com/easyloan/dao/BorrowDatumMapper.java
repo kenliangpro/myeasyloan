@@ -3,12 +3,10 @@ package com.easyloan.dao;
 import com.easyloan.bean.BorrowDatum;
 import com.easyloan.bean.BorrowDatumExample;
 import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-@Mapper
+
 public interface BorrowDatumMapper {
-    long countByExample(BorrowDatumExample example);
+    int countByExample(BorrowDatumExample example);
 
     int deleteByExample(BorrowDatumExample example);
 

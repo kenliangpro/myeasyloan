@@ -313,6 +313,136 @@ public class PersonalLoanDatumExample {
             addCriterion("mortgage_file not between", value1, value2, "mortgageFile");
             return (Criteria) this;
         }
+
+        public Criteria andLoanDetailsIsNull() {
+            addCriterion("loan_details is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoanDetailsIsNotNull() {
+            addCriterion("loan_details is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoanDetailsEqualTo(String value) {
+            addCriterion("loan_details =", value, "loanDetails");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoanDetailsNotEqualTo(String value) {
+            addCriterion("loan_details <>", value, "loanDetails");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoanDetailsGreaterThan(String value) {
+            addCriterion("loan_details >", value, "loanDetails");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoanDetailsGreaterThanOrEqualTo(String value) {
+            addCriterion("loan_details >=", value, "loanDetails");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoanDetailsLessThan(String value) {
+            addCriterion("loan_details <", value, "loanDetails");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoanDetailsLessThanOrEqualTo(String value) {
+            addCriterion("loan_details <=", value, "loanDetails");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoanDetailsLike(String value) {
+            addCriterion("loan_details like", value, "loanDetails");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoanDetailsNotLike(String value) {
+            addCriterion("loan_details not like", value, "loanDetails");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoanDetailsIn(List<String> values) {
+            addCriterion("loan_details in", values, "loanDetails");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoanDetailsNotIn(List<String> values) {
+            addCriterion("loan_details not in", values, "loanDetails");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoanDetailsBetween(String value1, String value2) {
+            addCriterion("loan_details between", value1, value2, "loanDetails");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoanDetailsNotBetween(String value1, String value2) {
+            addCriterion("loan_details not between", value1, value2, "loanDetails");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalInvestIsNull() {
+            addCriterion("total_invest is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalInvestIsNotNull() {
+            addCriterion("total_invest is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalInvestEqualTo(Double value) {
+            addCriterion("total_invest =", value, "totalInvest");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalInvestNotEqualTo(Double value) {
+            addCriterion("total_invest <>", value, "totalInvest");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalInvestGreaterThan(Double value) {
+            addCriterion("total_invest >", value, "totalInvest");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalInvestGreaterThanOrEqualTo(Double value) {
+            addCriterion("total_invest >=", value, "totalInvest");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalInvestLessThan(Double value) {
+            addCriterion("total_invest <", value, "totalInvest");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalInvestLessThanOrEqualTo(Double value) {
+            addCriterion("total_invest <=", value, "totalInvest");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalInvestIn(List<Double> values) {
+            addCriterion("total_invest in", values, "totalInvest");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalInvestNotIn(List<Double> values) {
+            addCriterion("total_invest not in", values, "totalInvest");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalInvestBetween(Double value1, Double value2) {
+            addCriterion("total_invest between", value1, value2, "totalInvest");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalInvestNotBetween(Double value1, Double value2) {
+            addCriterion("total_invest not between", value1, value2, "totalInvest");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

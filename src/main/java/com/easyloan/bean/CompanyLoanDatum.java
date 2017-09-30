@@ -7,6 +7,10 @@ public class CompanyLoanDatum {
 
     private String mortgageFile;
 
+    private String loanDetails;
+
+    private Double totalInvest;
+
     public String getId() {
         return id;
     }
@@ -29,5 +33,21 @@ public class CompanyLoanDatum {
 
     public void setMortgageFile(String mortgageFile) {
         this.mortgageFile = mortgageFile == null ? null : mortgageFile.trim();
+    }
+
+    public String getLoanDetails() {
+        return loanDetails;
+    }
+
+    public void setLoanDetails(String loanDetails) {
+        this.loanDetails = loanDetails == null ? null : loanDetails.trim();
+    }
+
+    public Double getTotalInvest() {
+        return totalInvest;
+    }
+
+    public void setTotalInvest(Double totalInvest) {
+        this.totalInvest = totalInvest;
     }
 }

@@ -1,8 +1,6 @@
 package com.easyloan.bean;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 public class PersonalLoanExample {
@@ -106,32 +104,6 @@ public class PersonalLoanExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
-            if (value == null) {
-                throw new RuntimeException("Value for " + property + " cannot be null");
-            }
-            addCriterion(condition, new java.sql.Date(value.getTime()), property);
-        }
-
-        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
-            if (values == null || values.size() == 0) {
-                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
-            }
-            List<java.sql.Date> dateList = new ArrayList<java.sql.Date>();
-            Iterator<Date> iter = values.iterator();
-            while (iter.hasNext()) {
-                dateList.add(new java.sql.Date(iter.next().getTime()));
-            }
-            addCriterion(condition, dateList, property);
-        }
-
-        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
-            if (value1 == null || value2 == null) {
-                throw new RuntimeException("Between values for " + property + " cannot be null");
-            }
-            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
-        }
-
         public Criteria andIdIsNull() {
             addCriterion("id is null");
             return (Criteria) this;
@@ -212,52 +184,52 @@ public class PersonalLoanExample {
             return (Criteria) this;
         }
 
-        public Criteria andLoanAmountEqualTo(Integer value) {
+        public Criteria andLoanAmountEqualTo(Double value) {
             addCriterion("loan_amount =", value, "loanAmount");
             return (Criteria) this;
         }
 
-        public Criteria andLoanAmountNotEqualTo(Integer value) {
+        public Criteria andLoanAmountNotEqualTo(Double value) {
             addCriterion("loan_amount <>", value, "loanAmount");
             return (Criteria) this;
         }
 
-        public Criteria andLoanAmountGreaterThan(Integer value) {
+        public Criteria andLoanAmountGreaterThan(Double value) {
             addCriterion("loan_amount >", value, "loanAmount");
             return (Criteria) this;
         }
 
-        public Criteria andLoanAmountGreaterThanOrEqualTo(Integer value) {
+        public Criteria andLoanAmountGreaterThanOrEqualTo(Double value) {
             addCriterion("loan_amount >=", value, "loanAmount");
             return (Criteria) this;
         }
 
-        public Criteria andLoanAmountLessThan(Integer value) {
+        public Criteria andLoanAmountLessThan(Double value) {
             addCriterion("loan_amount <", value, "loanAmount");
             return (Criteria) this;
         }
 
-        public Criteria andLoanAmountLessThanOrEqualTo(Integer value) {
+        public Criteria andLoanAmountLessThanOrEqualTo(Double value) {
             addCriterion("loan_amount <=", value, "loanAmount");
             return (Criteria) this;
         }
 
-        public Criteria andLoanAmountIn(List<Integer> values) {
+        public Criteria andLoanAmountIn(List<Double> values) {
             addCriterion("loan_amount in", values, "loanAmount");
             return (Criteria) this;
         }
 
-        public Criteria andLoanAmountNotIn(List<Integer> values) {
+        public Criteria andLoanAmountNotIn(List<Double> values) {
             addCriterion("loan_amount not in", values, "loanAmount");
             return (Criteria) this;
         }
 
-        public Criteria andLoanAmountBetween(Integer value1, Integer value2) {
+        public Criteria andLoanAmountBetween(Double value1, Double value2) {
             addCriterion("loan_amount between", value1, value2, "loanAmount");
             return (Criteria) this;
         }
 
-        public Criteria andLoanAmountNotBetween(Integer value1, Integer value2) {
+        public Criteria andLoanAmountNotBetween(Double value1, Double value2) {
             addCriterion("loan_amount not between", value1, value2, "loanAmount");
             return (Criteria) this;
         }
@@ -332,53 +304,63 @@ public class PersonalLoanExample {
             return (Criteria) this;
         }
 
-        public Criteria andLoanDeadlineEqualTo(Date value) {
-            addCriterionForJDBCDate("loan_deadline =", value, "loanDeadline");
+        public Criteria andLoanDeadlineEqualTo(String value) {
+            addCriterion("loan_deadline =", value, "loanDeadline");
             return (Criteria) this;
         }
 
-        public Criteria andLoanDeadlineNotEqualTo(Date value) {
-            addCriterionForJDBCDate("loan_deadline <>", value, "loanDeadline");
+        public Criteria andLoanDeadlineNotEqualTo(String value) {
+            addCriterion("loan_deadline <>", value, "loanDeadline");
             return (Criteria) this;
         }
 
-        public Criteria andLoanDeadlineGreaterThan(Date value) {
-            addCriterionForJDBCDate("loan_deadline >", value, "loanDeadline");
+        public Criteria andLoanDeadlineGreaterThan(String value) {
+            addCriterion("loan_deadline >", value, "loanDeadline");
             return (Criteria) this;
         }
 
-        public Criteria andLoanDeadlineGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("loan_deadline >=", value, "loanDeadline");
+        public Criteria andLoanDeadlineGreaterThanOrEqualTo(String value) {
+            addCriterion("loan_deadline >=", value, "loanDeadline");
             return (Criteria) this;
         }
 
-        public Criteria andLoanDeadlineLessThan(Date value) {
-            addCriterionForJDBCDate("loan_deadline <", value, "loanDeadline");
+        public Criteria andLoanDeadlineLessThan(String value) {
+            addCriterion("loan_deadline <", value, "loanDeadline");
             return (Criteria) this;
         }
 
-        public Criteria andLoanDeadlineLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("loan_deadline <=", value, "loanDeadline");
+        public Criteria andLoanDeadlineLessThanOrEqualTo(String value) {
+            addCriterion("loan_deadline <=", value, "loanDeadline");
             return (Criteria) this;
         }
 
-        public Criteria andLoanDeadlineIn(List<Date> values) {
-            addCriterionForJDBCDate("loan_deadline in", values, "loanDeadline");
+        public Criteria andLoanDeadlineLike(String value) {
+            addCriterion("loan_deadline like", value, "loanDeadline");
             return (Criteria) this;
         }
 
-        public Criteria andLoanDeadlineNotIn(List<Date> values) {
-            addCriterionForJDBCDate("loan_deadline not in", values, "loanDeadline");
+        public Criteria andLoanDeadlineNotLike(String value) {
+            addCriterion("loan_deadline not like", value, "loanDeadline");
             return (Criteria) this;
         }
 
-        public Criteria andLoanDeadlineBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("loan_deadline between", value1, value2, "loanDeadline");
+        public Criteria andLoanDeadlineIn(List<String> values) {
+            addCriterion("loan_deadline in", values, "loanDeadline");
             return (Criteria) this;
         }
 
-        public Criteria andLoanDeadlineNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("loan_deadline not between", value1, value2, "loanDeadline");
+        public Criteria andLoanDeadlineNotIn(List<String> values) {
+            addCriterion("loan_deadline not in", values, "loanDeadline");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoanDeadlineBetween(String value1, String value2) {
+            addCriterion("loan_deadline between", value1, value2, "loanDeadline");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoanDeadlineNotBetween(String value1, String value2) {
+            addCriterion("loan_deadline not between", value1, value2, "loanDeadline");
             return (Criteria) this;
         }
 
@@ -392,53 +374,63 @@ public class PersonalLoanExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeEqualTo(Date value) {
-            addCriterionForJDBCDate("create_time =", value, "createTime");
+        public Criteria andCreateTimeEqualTo(String value) {
+            addCriterion("create_time =", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotEqualTo(Date value) {
-            addCriterionForJDBCDate("create_time <>", value, "createTime");
+        public Criteria andCreateTimeNotEqualTo(String value) {
+            addCriterion("create_time <>", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThan(Date value) {
-            addCriterionForJDBCDate("create_time >", value, "createTime");
+        public Criteria andCreateTimeGreaterThan(String value) {
+            addCriterion("create_time >", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("create_time >=", value, "createTime");
+        public Criteria andCreateTimeGreaterThanOrEqualTo(String value) {
+            addCriterion("create_time >=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThan(Date value) {
-            addCriterionForJDBCDate("create_time <", value, "createTime");
+        public Criteria andCreateTimeLessThan(String value) {
+            addCriterion("create_time <", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("create_time <=", value, "createTime");
+        public Criteria andCreateTimeLessThanOrEqualTo(String value) {
+            addCriterion("create_time <=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIn(List<Date> values) {
-            addCriterionForJDBCDate("create_time in", values, "createTime");
+        public Criteria andCreateTimeLike(String value) {
+            addCriterion("create_time like", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotIn(List<Date> values) {
-            addCriterionForJDBCDate("create_time not in", values, "createTime");
+        public Criteria andCreateTimeNotLike(String value) {
+            addCriterion("create_time not like", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("create_time between", value1, value2, "createTime");
+        public Criteria andCreateTimeIn(List<String> values) {
+            addCriterion("create_time in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("create_time not between", value1, value2, "createTime");
+        public Criteria andCreateTimeNotIn(List<String> values) {
+            addCriterion("create_time not in", values, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeBetween(String value1, String value2) {
+            addCriterion("create_time between", value1, value2, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeNotBetween(String value1, String value2) {
+            addCriterion("create_time not between", value1, value2, "createTime");
             return (Criteria) this;
         }
 
@@ -709,6 +701,146 @@ public class PersonalLoanExample {
 
         public Criteria andUserIdNotBetween(String value1, String value2) {
             addCriterion("user_id not between", value1, value2, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditCardIsNull() {
+            addCriterion("credit_card is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditCardIsNotNull() {
+            addCriterion("credit_card is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditCardEqualTo(String value) {
+            addCriterion("credit_card =", value, "creditCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditCardNotEqualTo(String value) {
+            addCriterion("credit_card <>", value, "creditCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditCardGreaterThan(String value) {
+            addCriterion("credit_card >", value, "creditCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditCardGreaterThanOrEqualTo(String value) {
+            addCriterion("credit_card >=", value, "creditCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditCardLessThan(String value) {
+            addCriterion("credit_card <", value, "creditCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditCardLessThanOrEqualTo(String value) {
+            addCriterion("credit_card <=", value, "creditCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditCardLike(String value) {
+            addCriterion("credit_card like", value, "creditCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditCardNotLike(String value) {
+            addCriterion("credit_card not like", value, "creditCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditCardIn(List<String> values) {
+            addCriterion("credit_card in", values, "creditCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditCardNotIn(List<String> values) {
+            addCriterion("credit_card not in", values, "creditCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditCardBetween(String value1, String value2) {
+            addCriterion("credit_card between", value1, value2, "creditCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditCardNotBetween(String value1, String value2) {
+            addCriterion("credit_card not between", value1, value2, "creditCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneIsNull() {
+            addCriterion("phone is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneIsNotNull() {
+            addCriterion("phone is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneEqualTo(String value) {
+            addCriterion("phone =", value, "phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNotEqualTo(String value) {
+            addCriterion("phone <>", value, "phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneGreaterThan(String value) {
+            addCriterion("phone >", value, "phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneGreaterThanOrEqualTo(String value) {
+            addCriterion("phone >=", value, "phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneLessThan(String value) {
+            addCriterion("phone <", value, "phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneLessThanOrEqualTo(String value) {
+            addCriterion("phone <=", value, "phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneLike(String value) {
+            addCriterion("phone like", value, "phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNotLike(String value) {
+            addCriterion("phone not like", value, "phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneIn(List<String> values) {
+            addCriterion("phone in", values, "phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNotIn(List<String> values) {
+            addCriterion("phone not in", values, "phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneBetween(String value1, String value2) {
+            addCriterion("phone between", value1, value2, "phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNotBetween(String value1, String value2) {
+            addCriterion("phone not between", value1, value2, "phone");
             return (Criteria) this;
         }
     }

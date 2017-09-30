@@ -11,6 +11,8 @@ public class SafetyQuestion {
 
     private Integer safetyLevel;
 
+    private String paymentPassword;
+
     public String getId() {
         return id;
     }
@@ -49,5 +51,13 @@ public class SafetyQuestion {
 
     public void setSafetyLevel(Integer safetyLevel) {
         this.safetyLevel = safetyLevel;
+    }
+
+    public String getPaymentPassword() {
+        return paymentPassword;
+    }
+
+    public void setPaymentPassword(String paymentPassword) {
+        this.paymentPassword = paymentPassword == null ? null : paymentPassword.trim();
     }
 }

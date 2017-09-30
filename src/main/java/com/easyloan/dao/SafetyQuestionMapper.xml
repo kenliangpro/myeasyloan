@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.easyloan.dao.SafetyQuestionMapper" >
+  <resultMap id="BaseResultMap" type="com.easyloan.bean.SafetyQuestion" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="question" property="question" jdbcType="VARCHAR" />
+    <result column="answer" property="answer" jdbcType="VARCHAR" />
+    <result column="safety_email" property="safetyEmail" jdbcType="VARCHAR" />
+    <result column="safety_level" property="safetyLevel" jdbcType="INTEGER" />
+    <result column="payment_password" property="paymentPassword" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, question, answer, safety_email, safety_level, payment_password
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.easyloan.bean.SafetyQuestionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from loan_safety_question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from loan_safety_question
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from loan_safety_question
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.easyloan.bean.SafetyQuestionExample" >
+    delete from loan_safety_question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.easyloan.bean.SafetyQuestion" >
+    insert into loan_safety_question (id, question, answer, 
+      safety_email, safety_level, payment_password
+      )
+    values (#{id,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR}, 
+      #{safetyEmail,jdbcType=VARCHAR}, #{safetyLevel,jdbcType=INTEGER}, #{paymentPassword,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.easyloan.bean.SafetyQuestion" >
+    insert into loan_safety_question
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="question != null" >
+        question,
+      </if>
+      <if test="answer != null" >
+        answer,
+      </if>
+      <if test="safetyEmail != null" >
+        safety_email,
+      </if>
+      <if test="safetyLevel != null" >
+        safety_level,
+      </if>
+      <if test="paymentPassword != null" >
+        payment_password,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="question != null" >
+        #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="safetyEmail != null" >
+        #{safetyEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="safetyLevel != null" >
+        #{safetyLevel,jdbcType=INTEGER},
+      </if>
+      <if test="paymentPassword != null" >
+        #{paymentPassword,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.easyloan.bean.SafetyQuestionExample" resultType="java.lang.Integer" >
+    select count(*) from loan_safety_question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update loan_safety_question
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.question != null" >
+        question = #{record.question,jdbcType=VARCHAR},
+      </if>
+      <if test="record.answer != null" >
+        answer = #{record.answer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.safetyEmail != null" >
+        safety_email = #{record.safetyEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.safetyLevel != null" >
+        safety_level = #{record.safetyLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.paymentPassword != null" >
+        payment_password = #{record.paymentPassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update loan_safety_question
+    set id = #{record.id,jdbcType=VARCHAR},
+      question = #{record.question,jdbcType=VARCHAR},
+      answer = #{record.answer,jdbcType=VARCHAR},
+      safety_email = #{record.safetyEmail,jdbcType=VARCHAR},
+      safety_level = #{record.safetyLevel,jdbcType=INTEGER},
+      payment_password = #{record.paymentPassword,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.easyloan.bean.SafetyQuestion" >
+    update loan_safety_question
+    <set >
+      <if test="question != null" >
+        question = #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        answer = #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="safetyEmail != null" >
+        safety_email = #{safetyEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="safetyLevel != null" >
+        safety_level = #{safetyLevel,jdbcType=INTEGER},
+      </if>
+      <if test="paymentPassword != null" >
+        payment_password = #{paymentPassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.easyloan.bean.SafetyQuestion" >
+    update loan_safety_question
+    set question = #{question,jdbcType=VARCHAR},
+      answer = #{answer,jdbcType=VARCHAR},
+      safety_email = #{safetyEmail,jdbcType=VARCHAR},
+      safety_level = #{safetyLevel,jdbcType=INTEGER},
+      payment_password = #{paymentPassword,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

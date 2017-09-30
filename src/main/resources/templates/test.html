@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="/static/js/jquery.form.js"></script>
     <script>
         $(function () {
+
 
             $("#sendPhoneVa").click(function () {
                 var username = $("#username_phone").val();
@@ -47,37 +48,72 @@
             })
 
             $("#reg").click(function () {
+                var username = $("#username_phone").val();
+                var password = $("#reg_pass").val();
+                var verification_code = $("#reg_code").val();
+                var data = {
+                    username: username,
+                    password: password,
+                    verification_code: verification_code
+                }
+
                 $.ajax({
-                    url: "user/register",
+                    url: "/user/register",
                     type: "post",
-                    data: $("#regForm").serialize(),
+                    dataType: "json",
+                    contentType: "application/json",
+                    data: JSON.stringify(data),
                     success: function (result) {
+                        alert(result.message);
                         console.log(result);
                     }
 
                 });
             });
 
-            $("#log").click(function () {
+            $("#checkSafety").click(function () {
                 $.ajax({
-                    url: "user/login",
-                    type: "post",
-                    data: $("#logForm").serialize(),
+                    url: "user/checkSafetyInfo",
+                    type: "get",
                     success: function (result) {
                         console.log(result);
-                        if (result.extend.user.info.headerImg != null) {
-                            $("#srcImg").attr("src", "http://localhost:8080/loanimg/" + result.extend.user.info.headerImg);
-                        }
-                        if (result.extend.user.info.gender == 0) {
-                            $("#genderWoman").prop("checked", true);
-                        } else {
-                            $("#genderMan").prop("checked", true);
-                        }
-                        $("#realName").val(result.extend.user.info.realName);
-                        $("#phone").val(result.extend.user.info.phone);
-                        $("#addr").val(result.extend.user.info.addr);
-                        $("#email").val(result.extend.user.info.email);
                     }
+                })
+            })
+
+            $("#checkUserInfo").click(function () {
+                $.ajax({
+                    url: "user/checkUserInfo",
+                    type: "get",
+
+                    success: function (result) {
+                        console.log(result);
+                    }
+                })
+            })
+
+
+            $("#log").click(function () {
+                var username = $("#login_username").val();
+                var password = $("#login_password").val();
+                var verification_code = $("#login_code").val();
+
+                var data = {
+                    username: username,
+                    password: password,
+                    verification_code: verification_code
+                }
+
+                $.ajax({
+                    url: "/user/login",
+                    type: "post",
+                    dataType: "json",
+                    contentType: "application/json",
+                    data: JSON.stringify(data),
+                    success: function (result) {
+                        console.log(result);
+                    }
+
                 });
             });
 
@@ -95,7 +131,7 @@
             var options = {
                 success: function (data) {
                     console.log(data);
-                    $("#srcImg").attr("src", "http://localhost:8080/loanimg/" + data.extend.imgSrc);
+
                 }
             };
 
@@ -105,36 +141,45 @@
                 $("#uploadForm").ajaxSubmit(options);
             });
 
-            $("#ctbb").click(function () {
-                console.log($("#ct input[type=text]").val());
-            })
+
         })
     </script>
 </head>
 <body>
 <p>我要注册</p>
-<form id="regForm">
+<form id="regForm" method="post">
     手机号码<input type="text" name="username" id="username_phone"/><br/>
     <input type="button" value="发送手机验证码" id="sendPhoneVa"/><br/>
-    password<input type="password" name="password"/><br/>
-    conpassword<input type="password" name="conpassword"/><br/>
-    手机验证码:<input type="text" name="code"/>
+    password<input type="password" name="password" id="reg_pass"/><br/>
+    <!--conpassword<input type="password" name="conpassword"/><br/>-->
+    手机验证码:<input type="text" name="verification_code" id="reg_code"/>
+
     <input type="button" value="注册" id="reg"/>
 </form>
 <hr/>
 <p>我要登录</p>
-<form id="logForm">
-    username<input type="text" name="username"/><br/>
-    password<input type="password" name="password"/><br/>
-    验证码:<input type="text" name="code"/>
+<form id="logForm" method="post">
+    username<input type="text" name="username" id="login_username"/><br/>
+    password<input type="password" name="password" id="login_password"/><br/>
+    验证码:<input type="text" name="verification_code" id="login_code"/>
     <div style="float: left;">
         <i>
             <img style="height: 22px;" id="codeImg" alt="点击更换" title="点击更换"
                  src="code/captcha-image" onclick="this.src='/code/captcha-image?d='+new Date()*1"/>
         </i>
     </div>
+    <!--<p th:value="${errorMsg}"></p>-->
     <input type="button" value="登录" id="log"/>
+
 </form>
+
+<hr/>
+<button id="checkSafety">查看我的安全信息</button>
+<br/>
+
+<button id="checkUserInfo">查看我的个人信息</button>
+<br/>
+
 <hr/>
 
 <p>设置头像（异步）</p>
@@ -149,11 +194,11 @@
     男<input type="radio" name="gender" value="1" id="genderMan"/>
     女<input type="radio" name="gender" value="0" id="genderWoman"/>
     <br/>
-    real_name:<input type="text" name="realName" id="realName"/><br/>
+    <!--real_name:<input type="text" name="realName" id="realName"/><br/>-->
     email:<input type="text" name="email" id="email"/><br/>
     addr:<input type="text" name="addr" id="addr"/><br/>
-
-
+    <!--身份证号:<input type="text" name="id_number" id="id_number"/><br/>-->
+    手机号:<input type="text" name="phone" id="phone"/><br/>
     <input type="button" value="完善信息" id="info"/>
 </form>
 <hr/>

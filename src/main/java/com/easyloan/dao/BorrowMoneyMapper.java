@@ -3,12 +3,10 @@ package com.easyloan.dao;
 import com.easyloan.bean.BorrowMoney;
 import com.easyloan.bean.BorrowMoneyExample;
 import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-@Mapper
+
 public interface BorrowMoneyMapper {
-    long countByExample(BorrowMoneyExample example);
+    int countByExample(BorrowMoneyExample example);
 
     int deleteByExample(BorrowMoneyExample example);
 

@@ -3,12 +3,10 @@ package com.easyloan.dao;
 import com.easyloan.bean.SafetyQuestion;
 import com.easyloan.bean.SafetyQuestionExample;
 import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-@Mapper
+
 public interface SafetyQuestionMapper {
-    long countByExample(SafetyQuestionExample example);
+    int countByExample(SafetyQuestionExample example);
 
     int deleteByExample(SafetyQuestionExample example);
 

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>下一步</title>
+    <script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
+    <script>
+        $(function () {
+
+        })
+    </script>
+</head>
+<body>
+    <form method="POST" enctype="multipart/form-data" id="uploadForm" action="/personalLoan/personalLoanExecution">
+        文件1：<input type="file" name="loanDatums"/><br/>
+        文件2：<input type="file" name="loanDatums"/><br/>
+        phone:<input type="text" name="phone"/><br/>
+        addr:<input type="text" name="addr"/><br/>
+        银行卡号:<input type="text" name="creditCard"/>
+        <!--支付密码：<input type="password" name="paymentPassword"/>-->
+
+        <input type="submit" value="进行借贷" id="uploadImg"/>
+    </form>
+</body>
+</html>

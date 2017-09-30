@@ -3,12 +3,10 @@ package com.easyloan.dao;
 import com.easyloan.bean.UserInfo;
 import com.easyloan.bean.UserInfoExample;
 import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-@Mapper
+
 public interface UserInfoMapper {
-    long countByExample(UserInfoExample example);
+    int countByExample(UserInfoExample example);
 
     int deleteByExample(UserInfoExample example);
 

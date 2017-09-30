@@ -1,0 +1,65 @@
+<div>
+	<hr>
+	<p>
+		1，&lt;script data-main="app/main" src="app/lib/require.js">&lt;/script>引用require.js，并说明入口是app/main.js
+	</p>
+	<p>
+		2，main.js中require([files],function(){});的写法是按需引入files文件依赖，加载完后才执行function回调函数;app.js中define([],function(){})同理，这样写将这一方法封装成一个模块供require调用
+	</p>
+	<p>
+		3，app.js+router.js引入了backbone并新建了一个路由监听。默认根路由执行index渲染一个view(backbone中的View层)
+	</p>
+	<p>
+		4，点击entry执行路由中的entry方法构造entry的view，相当于执行app/view/entry.js中的方法
+	</p>
+</div>
+
+<!-- <script type="text/javascript"> 
+var countdown=6; 
+function sendemail(){
+    var obj = $("#btn");
+    settime(obj);
+    
+    }
+function settime(obj) { //发送验证码倒计时
+    if (countdown == 0) { 
+        obj.attr('disabled',false); 
+        //obj.removeattr("disabled"); 
+        obj.val("免费获取验证码");
+        countdown = 6; 
+        return;
+    } else { 
+        obj.attr('disabled',true);
+        obj.val("重新发送(" + countdown + ")");
+        countdown--; 
+    } 
+setTimeout(function() { 
+    settime(obj) }
+    ,1000) 
+}
+</script>
+
+<input type="button" id="btn" value="免费获取验证码" onclick="sendemail()" />  -->
+
+
+
+
+  <!--&lt;!&ndash; This is what you need &ndash;&gt;-->
+  
+<!--   <script src="/app/demoStyle/alertStyle/lib/sweet-alert.js"></script>
+  <link rel="stylesheet" href="/app/demoStyle/alertStyle/lib/sweet-alert.css">
+
+
+
+    <h4>Sweet Alert</h4>
+    <button class="btn btn-primary">Show error message</button>
+
+
+<script>
+    document.querySelector('button').onclick = function(){
+    swal("Oops...", "Something went wrong!", "error");
+};
+</script> -->
+
+  
+

@@ -3,12 +3,10 @@ package com.easyloan.dao;
 import com.easyloan.bean.JurisdictionDetails;
 import com.easyloan.bean.JurisdictionDetailsExample;
 import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-@Mapper
+
 public interface JurisdictionDetailsMapper {
-    long countByExample(JurisdictionDetailsExample example);
+    int countByExample(JurisdictionDetailsExample example);
 
     int deleteByExample(JurisdictionDetailsExample example);
 

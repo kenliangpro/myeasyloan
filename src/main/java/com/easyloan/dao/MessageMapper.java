@@ -3,12 +3,10 @@ package com.easyloan.dao;
 import com.easyloan.bean.Message;
 import com.easyloan.bean.MessageExample;
 import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-@Mapper
+
 public interface MessageMapper {
-    long countByExample(MessageExample example);
+    int countByExample(MessageExample example);
 
     int deleteByExample(MessageExample example);
 

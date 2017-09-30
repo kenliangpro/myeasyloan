@@ -1,17 +1,15 @@
 package com.easyloan.bean;
 
-import java.util.Date;
-
 public class PersonalLoan {
     private String id;
 
-    private Integer loanAmount;
+    private Double loanAmount;
 
     private Integer loanTern;
 
-    private Date loanDeadline;
+    private String loanDeadline;
 
-    private Date createTime;
+    private String createTime;
 
     private String addr;
 
@@ -21,6 +19,10 @@ public class PersonalLoan {
 
     private String userId;
 
+    private String creditCard;
+
+    private String phone;
+
     public String getId() {
         return id;
     }
@@ -29,11 +31,11 @@ public class PersonalLoan {
         this.id = id == null ? null : id.trim();
     }
 
-    public Integer getLoanAmount() {
+    public Double getLoanAmount() {
         return loanAmount;
     }
 
-    public void setLoanAmount(Integer loanAmount) {
+    public void setLoanAmount(Double loanAmount) {
         this.loanAmount = loanAmount;
     }
 
@@ -45,20 +47,20 @@ public class PersonalLoan {
         this.loanTern = loanTern;
     }
 
-    public Date getLoanDeadline() {
+    public String getLoanDeadline() {
         return loanDeadline;
     }
 
-    public void setLoanDeadline(Date loanDeadline) {
-        this.loanDeadline = loanDeadline;
+    public void setLoanDeadline(String loanDeadline) {
+        this.loanDeadline = loanDeadline == null ? null : loanDeadline.trim();
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime == null ? null : createTime.trim();
     }
 
     public String getAddr() {
@@ -91,5 +93,21 @@ public class PersonalLoan {
 
     public void setUserId(String userId) {
         this.userId = userId == null ? null : userId.trim();
+    }
+
+    public String getCreditCard() {
+        return creditCard;
+    }
+
+    public void setCreditCard(String creditCard) {
+        this.creditCard = creditCard == null ? null : creditCard.trim();
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
     }
 }

@@ -26,7 +26,7 @@
 		<!-- 指定javabean的位置 -->
 		<javaModelGenerator 
 			targetPackage="com.easyloan.bean"
-			targetProject=".\src\main\java">
+			targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
@@ -34,8 +34,8 @@
 		
 		<!-- 指定sql映射文件生成的位置 -->
 		<sqlMapGenerator 
-			targetPackage="mapper"
-			targetProject=".\src\main\resources">
+			targetPackage="com.easyloan.dao"
+			targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 		
@@ -43,7 +43,7 @@
 		<javaClientGenerator 
 			type="XMLMAPPER"
 			targetPackage="com.easyloan.dao" 
-			targetProject=".\src\main\java">
+			targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 	

@@ -1,7 +1,5 @@
 package com.easyloan.bean;
 
-import java.util.Date;
-
 public class Admin {
     private String id;
 
@@ -9,7 +7,7 @@ public class Admin {
 
     private String password;
 
-    private Date registerTime;
+    private String registerTime;
 
     public String getId() {
         return id;
@@ -35,11 +33,11 @@ public class Admin {
         this.password = password == null ? null : password.trim();
     }
 
-    public Date getRegisterTime() {
+    public String getRegisterTime() {
         return registerTime;
     }
 
-    public void setRegisterTime(Date registerTime) {
-        this.registerTime = registerTime;
+    public void setRegisterTime(String registerTime) {
+        this.registerTime = registerTime == null ? null : registerTime.trim();
     }
 }

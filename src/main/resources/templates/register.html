@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.form.js"></script>
+    <title>注册</title>
+</head>
+<script type="text/javascript">
+
+    $(function () {
+
+        $("#sendPhoneVa").click(function () {
+            var username = $("#username_phone").val();
+            $.ajax({
+                url: "user/sendcode/" + username,
+                type: "post",
+                success: function (result) {
+                    console.log(result);
+                }
+            });
+        });
+
+        $("#reg").click(function () {
+            $.ajax({
+                url: "user/register",
+                type: "post",
+                data: $("#regForm").serialize(),
+                success: function (result) {
+                    console.log(result);
+                }
+
+            });
+        });
+    });
+
+</script>
+<body>
+
+<p>我要注册</p>
+<form id="regForm">
+    手机号码<input type="text" name="username" id="username_phone"/><br/>
+    <input type="button" value="发送手机验证码" id="sendPhoneVa"/><br/>
+    password<input type="password" name="password"/><br/>
+    conpassword<input type="password" name="conpassword"/><br/>
+    手机验证码:<input type="text" name="code"/>
+    <input type="button" value="注册" id="reg"/>
+</form>
+
+</body>
+</html>

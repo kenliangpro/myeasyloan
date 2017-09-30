@@ -3,12 +3,10 @@ package com.easyloan.dao;
 import com.easyloan.bean.Suggestion;
 import com.easyloan.bean.SuggestionExample;
 import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-@Mapper
+
 public interface SuggestionMapper {
-    long countByExample(SuggestionExample example);
+    int countByExample(SuggestionExample example);
 
     int deleteByExample(SuggestionExample example);
 

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>完善安全信息</title>
+    <script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
+    <script>
+
+        $(function () {
+            $("#safetycommit").click(function () {
+                $.ajax({
+                    url: "user/perfectSafetyInfo",
+                    type: "post",
+                    data: $("#safetyForm").serialize(),
+                    success: function (result) {
+                        console.log(result);
+                    }
+
+                });
+            });
+        })
+
+    </script>
+</head>
+<body>
+<form id="safetyForm">
+
+    安全邮箱(必填)<input type="text" name="safetyEmail" id="safety_email"/><br/>
+    安全问题：<input type="text" name="question" id="question"/><br/>
+    答案<input type="text" name="answer" id="answer"/><br/>
+    支付密码:<input type="text" name="paymentPassword" id="paymentPassword"/><br/>
+
+    <!--等级<input type="text" name="safetyLevel" id="safety_level" /><br/>-->
+    <input type="button" value="完善安全信息" id="safetycommit"/>
+</form>
+</body>
+</html>

@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  */
 public final class CookieUtils {
-	public static final String USER_TOKEN = "user_token"; 
+	public static final String USER_TOKEN = "user_token";
+	public static final String VERIFICATION_CODE = "code";
 
     /**
      * 得到Cookie的值, 不编码

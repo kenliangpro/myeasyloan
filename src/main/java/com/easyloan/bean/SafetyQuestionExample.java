@@ -443,6 +443,76 @@ public class SafetyQuestionExample {
             addCriterion("safety_level not between", value1, value2, "safetyLevel");
             return (Criteria) this;
         }
+
+        public Criteria andPaymentPasswordIsNull() {
+            addCriterion("payment_password is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentPasswordIsNotNull() {
+            addCriterion("payment_password is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentPasswordEqualTo(String value) {
+            addCriterion("payment_password =", value, "paymentPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentPasswordNotEqualTo(String value) {
+            addCriterion("payment_password <>", value, "paymentPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentPasswordGreaterThan(String value) {
+            addCriterion("payment_password >", value, "paymentPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentPasswordGreaterThanOrEqualTo(String value) {
+            addCriterion("payment_password >=", value, "paymentPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentPasswordLessThan(String value) {
+            addCriterion("payment_password <", value, "paymentPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentPasswordLessThanOrEqualTo(String value) {
+            addCriterion("payment_password <=", value, "paymentPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentPasswordLike(String value) {
+            addCriterion("payment_password like", value, "paymentPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentPasswordNotLike(String value) {
+            addCriterion("payment_password not like", value, "paymentPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentPasswordIn(List<String> values) {
+            addCriterion("payment_password in", values, "paymentPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentPasswordNotIn(List<String> values) {
+            addCriterion("payment_password not in", values, "paymentPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentPasswordBetween(String value1, String value2) {
+            addCriterion("payment_password between", value1, value2, "paymentPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentPasswordNotBetween(String value1, String value2) {
+            addCriterion("payment_password not between", value1, value2, "paymentPassword");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

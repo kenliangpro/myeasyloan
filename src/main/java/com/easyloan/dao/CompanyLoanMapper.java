@@ -3,12 +3,10 @@ package com.easyloan.dao;
 import com.easyloan.bean.CompanyLoan;
 import com.easyloan.bean.CompanyLoanExample;
 import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-@Mapper
+
 public interface CompanyLoanMapper {
-    long countByExample(CompanyLoanExample example);
+    int countByExample(CompanyLoanExample example);
 
     int deleteByExample(CompanyLoanExample example);
 

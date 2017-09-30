@@ -1,7 +1,5 @@
 package com.easyloan.bean;
 
-import java.util.Date;
-
 public class Business {
     private String id;
 
@@ -15,7 +13,7 @@ public class Business {
 
     private String addr;
 
-    private Date createTime;
+    private String createTime;
 
     private String companyNum;
 
@@ -67,12 +65,12 @@ public class Business {
         this.addr = addr == null ? null : addr.trim();
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime == null ? null : createTime.trim();
     }
 
     public String getCompanyNum() {

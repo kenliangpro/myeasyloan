@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.easyloan.dao.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.easyloan.bean.UserInfo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="INTEGER" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="header_img" property="headerImg" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="addr" property="addr" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="id_number" property="idNumber" jdbcType="VARCHAR" />
+    <result column="id_number_img" property="idNumberImg" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, gender, real_name, header_img, email, addr, phone, id_number, id_number_img, 
+    status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.easyloan.bean.UserInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from loan_userinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from loan_userinfo
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from loan_userinfo
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.easyloan.bean.UserInfoExample" >
+    delete from loan_userinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.easyloan.bean.UserInfo" >
+    insert into loan_userinfo (id, gender, real_name, 
+      header_img, email, addr, 
+      phone, id_number, id_number_img, 
+      status)
+    values (#{id,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, #{realName,jdbcType=VARCHAR}, 
+      #{headerImg,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, #{idNumberImg,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.easyloan.bean.UserInfo" >
+    insert into loan_userinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="headerImg != null" >
+        header_img,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="addr != null" >
+        addr,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="idNumber != null" >
+        id_number,
+      </if>
+      <if test="idNumberImg != null" >
+        id_number_img,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="headerImg != null" >
+        #{headerImg,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null" >
+        #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null" >
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumberImg != null" >
+        #{idNumberImg,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.easyloan.bean.UserInfoExample" resultType="java.lang.Integer" >
+    select count(*) from loan_userinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update loan_userinfo
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null" >
+        gender = #{record.gender,jdbcType=INTEGER},
+      </if>
+      <if test="record.realName != null" >
+        real_name = #{record.realName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.headerImg != null" >
+        header_img = #{record.headerImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addr != null" >
+        addr = #{record.addr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idNumber != null" >
+        id_number = #{record.idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idNumberImg != null" >
+        id_number_img = #{record.idNumberImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update loan_userinfo
+    set id = #{record.id,jdbcType=VARCHAR},
+      gender = #{record.gender,jdbcType=INTEGER},
+      real_name = #{record.realName,jdbcType=VARCHAR},
+      header_img = #{record.headerImg,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      addr = #{record.addr,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      id_number = #{record.idNumber,jdbcType=VARCHAR},
+      id_number_img = #{record.idNumberImg,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.easyloan.bean.UserInfo" >
+    update loan_userinfo
+    <set >
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="headerImg != null" >
+        header_img = #{headerImg,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null" >
+        addr = #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null" >
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumberImg != null" >
+        id_number_img = #{idNumberImg,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.easyloan.bean.UserInfo" >
+    update loan_userinfo
+    set gender = #{gender,jdbcType=INTEGER},
+      real_name = #{realName,jdbcType=VARCHAR},
+      header_img = #{headerImg,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      addr = #{addr,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      id_number_img = #{idNumberImg,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

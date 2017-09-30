@@ -1,8 +1,6 @@
 package com.easyloan.bean;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 public class SuggestionExample {
@@ -104,32 +102,6 @@ public class SuggestionExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
-        }
-
-        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
-            if (value == null) {
-                throw new RuntimeException("Value for " + property + " cannot be null");
-            }
-            addCriterion(condition, new java.sql.Date(value.getTime()), property);
-        }
-
-        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
-            if (values == null || values.size() == 0) {
-                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
-            }
-            List<java.sql.Date> dateList = new ArrayList<java.sql.Date>();
-            Iterator<Date> iter = values.iterator();
-            while (iter.hasNext()) {
-                dateList.add(new java.sql.Date(iter.next().getTime()));
-            }
-            addCriterion(condition, dateList, property);
-        }
-
-        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
-            if (value1 == null || value2 == null) {
-                throw new RuntimeException("Between values for " + property + " cannot be null");
-            }
-            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
         }
 
         public Criteria andIdIsNull() {
@@ -282,53 +254,63 @@ public class SuggestionExample {
             return (Criteria) this;
         }
 
-        public Criteria andSuggestionTimeEqualTo(Date value) {
-            addCriterionForJDBCDate("suggestion_time =", value, "suggestionTime");
+        public Criteria andSuggestionTimeEqualTo(String value) {
+            addCriterion("suggestion_time =", value, "suggestionTime");
             return (Criteria) this;
         }
 
-        public Criteria andSuggestionTimeNotEqualTo(Date value) {
-            addCriterionForJDBCDate("suggestion_time <>", value, "suggestionTime");
+        public Criteria andSuggestionTimeNotEqualTo(String value) {
+            addCriterion("suggestion_time <>", value, "suggestionTime");
             return (Criteria) this;
         }
 
-        public Criteria andSuggestionTimeGreaterThan(Date value) {
-            addCriterionForJDBCDate("suggestion_time >", value, "suggestionTime");
+        public Criteria andSuggestionTimeGreaterThan(String value) {
+            addCriterion("suggestion_time >", value, "suggestionTime");
             return (Criteria) this;
         }
 
-        public Criteria andSuggestionTimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("suggestion_time >=", value, "suggestionTime");
+        public Criteria andSuggestionTimeGreaterThanOrEqualTo(String value) {
+            addCriterion("suggestion_time >=", value, "suggestionTime");
             return (Criteria) this;
         }
 
-        public Criteria andSuggestionTimeLessThan(Date value) {
-            addCriterionForJDBCDate("suggestion_time <", value, "suggestionTime");
+        public Criteria andSuggestionTimeLessThan(String value) {
+            addCriterion("suggestion_time <", value, "suggestionTime");
             return (Criteria) this;
         }
 
-        public Criteria andSuggestionTimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("suggestion_time <=", value, "suggestionTime");
+        public Criteria andSuggestionTimeLessThanOrEqualTo(String value) {
+            addCriterion("suggestion_time <=", value, "suggestionTime");
             return (Criteria) this;
         }
 
-        public Criteria andSuggestionTimeIn(List<Date> values) {
-            addCriterionForJDBCDate("suggestion_time in", values, "suggestionTime");
+        public Criteria andSuggestionTimeLike(String value) {
+            addCriterion("suggestion_time like", value, "suggestionTime");
             return (Criteria) this;
         }
 
-        public Criteria andSuggestionTimeNotIn(List<Date> values) {
-            addCriterionForJDBCDate("suggestion_time not in", values, "suggestionTime");
+        public Criteria andSuggestionTimeNotLike(String value) {
+            addCriterion("suggestion_time not like", value, "suggestionTime");
             return (Criteria) this;
         }
 
-        public Criteria andSuggestionTimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("suggestion_time between", value1, value2, "suggestionTime");
+        public Criteria andSuggestionTimeIn(List<String> values) {
+            addCriterion("suggestion_time in", values, "suggestionTime");
             return (Criteria) this;
         }
 
-        public Criteria andSuggestionTimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("suggestion_time not between", value1, value2, "suggestionTime");
+        public Criteria andSuggestionTimeNotIn(List<String> values) {
+            addCriterion("suggestion_time not in", values, "suggestionTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSuggestionTimeBetween(String value1, String value2) {
+            addCriterion("suggestion_time between", value1, value2, "suggestionTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSuggestionTimeNotBetween(String value1, String value2) {
+            addCriterion("suggestion_time not between", value1, value2, "suggestionTime");
             return (Criteria) this;
         }
 

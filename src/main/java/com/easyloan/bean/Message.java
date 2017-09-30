@@ -1,13 +1,11 @@
 package com.easyloan.bean;
 
-import java.util.Date;
-
 public class Message {
     private String id;
 
     private String message;
 
-    private Date createTime;
+    private String createTime;
 
     private String managerId;
 
@@ -27,12 +25,12 @@ public class Message {
         this.message = message == null ? null : message.trim();
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime == null ? null : createTime.trim();
     }
 
     public String getManagerId() {

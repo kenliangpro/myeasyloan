@@ -3,12 +3,10 @@ package com.easyloan.dao;
 import com.easyloan.bean.Admin;
 import com.easyloan.bean.AdminExample;
 import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-@Mapper
+
 public interface AdminMapper {
-    long countByExample(AdminExample example);
+    int countByExample(AdminExample example);
 
     int deleteByExample(AdminExample example);
 
