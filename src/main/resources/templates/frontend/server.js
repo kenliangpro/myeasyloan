@@ -4,16 +4,27 @@ var app = express();
 var fs = require('fs');
 var http = require('http');
 var request2 = require('request');
-var bodyParser=require('body-parser')
+var bodyParser=require('body-parser');
+var url  = require('url');
 //使用的mock方法选项
-// var proxy=easyMockproxy;
-var proxy=requestProxy;
+var proxy=easyMockproxy;
+// var proxy=requestProxy;
 app.use(bodyParser.json({limit: '1mb'}));  //body-parser 解析json格式数据
 app.use(bodyParser.urlencoded({            //此项必须在 bodyParser.json 下面,为参数编码
   extended: true
 }));
+
 app.use('/app', express.static('app'));
-app.use('/index.html', express.static('index.html'));
+app.get('/index.html', function(request,response){
+    response.writeHead(200, {'Content-Type': 'text/html'});
+    fs.readFile(__dirname + '/index.html', {flag: 'r+', encoding: 'utf8'}, function (err, data) {
+        if(err) {
+         console.error(err);
+         return;
+        }
+        response.end(data);
+    });
+});
 
 
 app.get('/mock',function(request,response){
@@ -53,10 +64,10 @@ app.post('/user/perfectSafetyInfo',function(request,response){
 app.post('/personalLoan/checkLoanPlan',function(request,response){
     proxy('personalLoan/checkLoanPlan',response,'POST',request);
 })
-
 app.get('/code/captcha-image',function(request,response){
-    proxy('code/captcha-image',response,'GET',request);
+    imageProxy('code/captcha-image',response,'GET',request);
 })
+
 
 
 
@@ -95,16 +106,19 @@ function requestProxy(path,response,method,request){
     var ljUrl=`http://172.20.10.2:8080/${path}`;
     var wjfUrl=`http://10.9.33.109:11112/${path}`;
     var maooCoffeeUrl = `http://192.168.1.176:8080/${path}`;
-    var local = `http://localhost:8080/${path}`;
+    var ljSsUrl = `http://192.168.199.226:8080/${path}`;
+
     //使用的url选项
     // var useUrl=ljUrl
-    var useUrl = local;
+    // var useUrl = wjfUrl;
+    var useUrl = ljSsUrl;
     var requestConfig={
         url:useUrl,
         method:method||'GET',
         json:true,
         headers:{
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'cookie':request.headers.cookie
         }
     }
     
@@ -113,10 +127,14 @@ function requestProxy(path,response,method,request){
         // requestConfig.body=JSON.stringify(request.body)
         request2(requestConfig,function(r,resp,body){
             console.log("resp")
-            console.log(body)
+            console.log(resp.headers)
 
-            // response.writeHead(200, {'Content-Type': 'application/json'});  
-            // response.write(JSON.stringify(body));
+            response.writeHead(200, {
+                'Content-Type': 'application/json',
+                'set-cookie':resp.headers['set-cookie']
+            });  
+            response.headers=resp.headers;
+            response.write(JSON.stringify(body));
             // response.write(""+body);  
              // response.write("success");
             response.end();
@@ -125,11 +143,52 @@ function requestProxy(path,response,method,request){
         request2(useUrl,function(r,resp,body){
             console.log("resp2")
             console.log(body)
-            // response.writeHead(200, {'Content-Type': 'application/json'});  
-  
-
+            response.writeHead(200, {
+                'Content-Type': 'application/json',
+                'set-cookie':resp.headers['set-cookie']
+            });  
+            response.write(JSON.stringify(body));
             response.end();
         })
     }
     
 }
+function imageProxy(path,response,method,request){
+    var IMGS = new imageServer( http , url);
+    var imageUrl='/code/captcha-image'
+    IMGS.http( imageUrl, function( data ){
+        response.writeHead(200, {"Content-Type": data.type});
+        var img = new Buffer(data.base64, 'base64').toString('binary');
+        response.write(img, "binary");
+        response.end();
+    });
+}
+var imageServer = function( http , url ){
+    var _url  = url;
+    var _http = http;
+    this.http = function(url , callback , method){
+        method      = method || 'GET';
+        callback    = callback || function(){};
+        var urlData = _url.parse(url);
+        var request = _http.createClient(80 , urlData.host).
+        request(method, urlData.pathname, {"host": urlData.host});
+        request.end();
+        request.on('response', function (response)
+        {
+            var type = response.headers["content-type"],
+                body = "";
+            response.setEncoding('binary');
+            response.on('end', function () {
+                var base64 = new Buffer(body, 'binary').toString('base64');
+                var data = {
+                    type   : type ,
+                    base64 : base64
+                };
+                callback(data);
+            });
+            response.on('data', function (chunk) {
+                if (response.statusCode == 200) body += chunk;
+            });
+        });
+    };
+};

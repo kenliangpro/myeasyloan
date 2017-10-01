@@ -32,7 +32,27 @@ define([
                     password : password,
                     verification_code:verification_code,
                 };
-                service.userLogin(data);
+                service.userLogin(data).then(function(res){
+                    var state = res.state;
+                    if(state == -1){
+                        bootbox.confirm({
+                            size: "small",
+                            message: "该账号未注册",
+                            callback: function(result){}
+                        })
+                    }else if(state == 0){
+                        bootbox.confirm({
+                            size: "small",
+                            message: "账号或密码错误",
+                            callback: function(result){}
+                        })
+                    }else {
+                        window.location.href="#/";
+                    }
+                });
+
+
+
             }
 
         },

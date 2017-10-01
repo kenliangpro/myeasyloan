@@ -17,73 +17,74 @@
 
 
 <div class="col-md-4" style="margin:50px ">
-<div class="h-service">
-  <div class="icon-wrap ico-bg round-fifty wow fadeInDown">
-    <i class="fa fa-question">
-    </i>
-  </div>
-  <div class="h-service-content wow fadeInUp">
+  <div class="h-service">
+    <div class="icon-wrap ico-bg round-fifty wow fadeInDown">
+      <i class="fa fa-question">
+      </i>
+    </div>
+  <div style="margin-top: 40px">
+      <div class="bs-example">
+        <form class="form-horizontal" role="form"  style="margin-right: 20px">
+          <div class="form-group">
+            <label class="col-sm-2 control-label"> 金额</label>
+            <div class="col-sm-10"  style="width: 280px" >
+              <input type="number" class="form-control" id="loan_amount" placeholder="想要贷款多少">
+            </div>
 
-		  
-<div style="margin-top: 40px">
-<!-- 	<form>
-	<h4>(借1000用一天利息0.04%)</h4>
-  
-    贷款金额：<input type="text" name="loan_amount" id="loan_amount"/>元<br/>
-
-    贷款期限：<input type="text" name="loan_tern" id="loan_tern"/>个月<br/>
-
-    怎么还<input type="button" id="plan" value="查看贷款计划"/><br/>
-
-    总利息:<span id="totalInvest"></span>
-
-    <div id="loanplan"></div>
-
-    <input type="button" id="next" value="下一步"/>
-</form> -->
-
-  <div class="bs-example">
-    <form class="form-horizontal" role="form"  style="margin-right: 20px">
-      <div class="form-group">
-        <label class="col-sm-2 control-label"> 金额</label>
-        <div class="col-sm-10"  style="display:inline;width: 180px" >
-          <input type="text" class="form-control" id="loan_amount" placeholder="想要贷款多少">
-        </div>
-
-        <div style="display:inline">.00元</div>
+            <div>.00元</div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">期限</label>
+            <div class="col-sm-10" style="width: 280px" >
+              <!-- <input type="text" class="form-control" id="loan_tern" placeholder="想要贷款多久">    -->
+              <select class="form-control" id="loan_tern" >
+                <option value="" selected="selected">请选择贷款期限</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+              </select>
+            </div>
+            <div>个月</div>
+          </div>
+          <div class="form-group">
+            <div style="margin-left: 86px;float: left;">
+              <button type="button" class="btn btn-primary" id="plan">查看贷款计划</button>
+            </div>
+            <div style="float: right;margin-right: 90px">
+              <button type="button" class="btn btn-primary">我要贷款</button>
+            </div>
+          </div>
+        </form>
       </div>
-
-<!--       <div class="input-group">
-      	<label class="col-sm-2 control-label"> 金额</label>
-		  <span class="input-group-addon">$</span>
-		  <input type="text" class="form-control col-xs-2" aria-label="Amount (to the nearest dollar)" >
-		  <span class="input-group-addon">.00</span>
-	  </div> -->
-
-
-
-      <div class="form-group">
-        <label class="col-sm-2 control-label">期限</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="loan_tern" placeholder="想要贷款多久">
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button type="button" class="btn btn-primary" id="plan">查看贷款计划</button>
-        </div>
-      </div>
-
-
-    </form>
-  </div>
-
-
-</div>
-
-    </p>
+    </div>
   </div>
 </div>
+
+<div class="col-md-4" style="margin:50px " id="showPlan" hidden="hidden">
+  <div class="h-service">
+    <div class="icon-wrap ico-bg round-fifty">
+      <i class="fa fa-h-square">
+      </i>
+    </div>
+    <div class="h-service-content wow fadeInUp">
+      <h4 style="margin-top: 40px">
+        你的贷款计划
+      </h4>
+
+      <div id="loanplan"></div>
+      
+    </div>
+  </div>
 </div>
+
 
 

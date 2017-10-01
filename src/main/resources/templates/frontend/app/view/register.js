@@ -29,27 +29,28 @@ define([
                 var data={
                     username : username,
                 };
+                // service.sendcode(data);
 
                 service.sendcode(data).then(function(){
-                        var countdown=20; 
+                        var countdown=20;
                         var obj = $("#send");
                         settime(obj);
                         
                     function settime(obj) { //发送验证码倒计时
-                        if (countdown == 0) { 
-                            obj.attr('disabled',false); 
-                            //obj.removeattr("disabled"); 
+                        if (countdown == 0) {
+                            obj.attr('disabled',false);
+                            //obj.removeattr("disabled");
                             obj.val("免费获取验证码");
-                            countdown = 20; 
+                            countdown = 20;
                             return;
-                        } else { 
+                        } else {
                             obj.attr('disabled',true);
                             obj.val("重新发送(" + countdown + ")");
-                            countdown--; 
-                        } 
-                    setTimeout(function() { 
+                            countdown--;
+                        }
+                    setTimeout(function() {
                         settime(obj) }
-                        ,1000) 
+                        ,1000)
                     }
 
                 });
@@ -85,7 +86,23 @@ define([
                                 password : pass,
                                 verification_code : verification_code,
                             };
-                         service.userRegister(data);
+                         service.userRegister(data).then(function (result) {
+                             if(result.message=='用户已存在'){
+                                 bootbox.confirm({
+                                     size: "small",
+                                     message: "用户已存在请重新注册",
+                                     callback: function(result){}
+                                 })
+                             }else if(result.message=='验证码不正确'){
+                                 bootbox.confirm({
+                                     size: "small",
+                                     message: "验证码不正确",
+                                     callback: function(result){}
+                                 })
+                             }else {
+                                 window.location.href='#/';
+                             }
+                         });
                          }
         },
 

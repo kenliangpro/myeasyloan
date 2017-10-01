@@ -95,6 +95,7 @@ define([
                         safetyEmail : setSafetyEmail,
                         paymentPassword : setPaymentPassword,
                     };
+                    console.log(data);
                     service.perfectSafetyInfo(data);
                     window.location.href="#/";
 
@@ -103,87 +104,113 @@ define([
 
         },
 
-
-
-
-         render: function(param) {
-             $('#content').html(loadingtpl);
-            service.safetyInfo().then(function(res){
-                var safeData = res.data;
-
-                var id = safeData.id;
-                var question = safeData.question;
-                    answer = safeData.answer;
-                var safetyEmail = safeData.safetyEmail;
-                var safetyLevel = safeData.safetyLevel;
-                var paymentPassword =  safeData.paymentPassword;
-
-                /*加密邮箱设置*/
-                 var frontEmail = safetyEmail.substring(0,3);
-                 var replaceEmail = safetyEmail.substring(3,8);
-                 var behindEmail = safetyEmail.substring(8);
-                 var becomeEmail = replaceEmail.replace(replaceEmail,"*****");
-                 var finalEmail = frontEmail + becomeEmail + behindEmail;
-
-                  /*星星个数*/
-                  function repeat(str , n){
-                    return new Array(n+1).join(str);
-                  }
-
-                 /*加密问题设置*/
-                 var answerLength = answer.length;
-                 var coverAnswer = repeat("*", answerLength);
-
-                 
-                 /*加密支付密码*/
-                 var paymentLength = paymentPassword.length;
-                 var coverPayment = repeat("*", paymentLength);
-
-                 /*安全级别设置*/
-                 var safeFactor;
-                 var length;
-                 if (safetyLevel==0) {
-                    safeFactor = '无';
-                 }else if (safetyLevel == 1) {
-                    safeFactor = '低';
-                    length = '30%';
-                 }else if (safetyLevel == 2) {
-                    safeFactor = '中';
-                    length = '60%';
-                 }else if (safetyLevel == 3) {
-                    safeFactor = '高';
-                    length = '100%';
-                 }
-
-                 $('#content').html(template.compile(tpl)({
-
-                    data :{
-                        id : id,
-                        question:question,
-                        answer:answer,
-                        safetyEmail:safetyEmail,
-                        safeFactor:safeFactor,
-                        paymentPassword:paymentPassword,
-
-                        finalEmail:finalEmail,
-                        coverAnswer:coverAnswer,
-                        coverPayment:coverPayment,
-                        length:length,
-                    },
-                }));
-
+        render: function(param) {
+            service.safetyInfo().then(function (res) {
+                var state = res.state;
                  // 设置安全页面初次输入页面
-                 if (safetyLevel==1||safetyLevel==2||safetyLevel==3) {
-                    $('#unsafe').hide();
-                    $('#safe').show();
+                 if (state==-1) {
+                     $('#safe').hide();
+                     $('#unsafe').show();
                    }else{
-                    $('#safe').hide();
-                    $('#unsafe').show();
+                     $('#unsafe').hide();
+                     $('#safe').show();
+
+
+
                    }
 
-            });  
 
-        },
+
+            });
+
+
+            $('#content').html(tpl);
+        }
     });
     return main;
 });
+
+
+
+//          render: function(param) {
+//              $('#content').html(loadingtpl);
+//             service.safetyInfo().then(function(res){
+//
+//                 var safeData = res.data;
+//
+//                 var id = safeData.id;
+//                 var question = safeData.question;
+//                     answer = safeData.answer;
+//                 var safetyEmail = safeData.safetyEmail;
+//                 var safetyLevel = safeData.safetyLevel;
+//                 var paymentPassword =  safeData.paymentPassword;
+//
+//                 /*加密邮箱设置*/
+//                  var frontEmail = safetyEmail.substring(0,3);
+//                  var replaceEmail = safetyEmail.substring(3,8);
+//                  var behindEmail = safetyEmail.substring(8);
+//                  var becomeEmail = replaceEmail.replace(replaceEmail,"*****");
+//                  var finalEmail = frontEmail + becomeEmail + behindEmail;
+//
+//                   /*星星个数*/
+//                   function repeat(str , n){
+//                     return new Array(n+1).join(str);
+//                   }
+//
+//                  /*加密问题设置*/
+//                  var answerLength = answer.length;
+//                  var coverAnswer = repeat("*", answerLength);
+//
+//
+//                  /*加密支付密码*/
+//                  var paymentLength = paymentPassword.length;
+//                  var coverPayment = repeat("*", paymentLength);
+//
+//                  /*安全级别设置*/
+//                  var safeFactor;
+//                  var length;
+//                  if (safetyLevel==0) {
+//                     safeFactor = '无';
+//                  }else if (safetyLevel == 1) {
+//                     safeFactor = '低';
+//                     length = '30%';
+//                  }else if (safetyLevel == 2) {
+//                     safeFactor = '中';
+//                     length = '60%';
+//                  }else if (safetyLevel == 3) {
+//                     safeFactor = '高';
+//                     length = '100%';
+//                  }
+//
+//                  $('#content').html(template.compile(tpl)({
+//
+//                     data :{
+//                         id : id,
+//                         question:question,
+//                         answer:answer,
+//                         safetyEmail:safetyEmail,
+//                         safeFactor:safeFactor,
+//                         paymentPassword:paymentPassword,
+//
+//                         finalEmail:finalEmail,
+//                         coverAnswer:coverAnswer,
+//                         coverPayment:coverPayment,
+//                         length:length,
+//                     },
+//                 }));
+//
+//                  // 设置安全页面初次输入页面
+//                  if (safetyLevel==1||safetyLevel==2||safetyLevel==3) {
+//                     $('#unsafe').hide();
+//                     $('#safe').show();
+//                    }else{
+//                     $('#safe').hide();
+//                     $('#unsafe').show();
+//                    }
+//
+//             });
+//
+//         },
+//     });
+//     return main;
+// });

@@ -25,6 +25,7 @@ define(function(require, exports, module) {
             "comLoan":"comLoan",
             "borrow":"borrow",
             "borrProcess":"borrProcess",
+            "certification":"certification",
 
             
 		},
@@ -209,6 +210,17 @@ define(function(require, exports, module) {
             })
             
         },
+
+        certification:function(){
+            this.index(1).then(function(){
+                require(['./view/certification'],function(View){
+                    var view = new View();
+                    view.render();
+                });
+            })
+            
+        },
+
 
 
 
