@@ -68,6 +68,10 @@ app.get('/code/captcha-image',function(request,response){
     imageProxy('code/captcha-image',response,'GET',request);
 })
 
+app.post('/user/findpassword',function(request,response){
+    proxy('user/findpassword',response,'POST',request);
+})
+
 
 
 

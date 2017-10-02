@@ -26,6 +26,7 @@ define(function(require, exports, module) {
             "borrow":"borrow",
             "borrProcess":"borrProcess",
             "certification":"certification",
+            "forgetPass":"forgetPass",
 
             
 		},
@@ -219,6 +220,16 @@ define(function(require, exports, module) {
                 });
             })
             
+        },
+
+        forgetPass:function(){
+            this.index(1).then(function(){
+                require(['./view/forgetPass'],function(View){
+                    var view = new View();
+                    view.render();
+                });
+            })
+
         },
 
 

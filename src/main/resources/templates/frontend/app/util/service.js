@@ -7,6 +7,23 @@ define([], function () {
         }
         return true;
     }
+    service.sendcodeForget = function (data) {
+        var dtd = $.Deferred();
+        var username = data.username;
+        console.log(username);
+        $.ajax({
+            url: "user/forgetPassword" ,
+            type: "post",
+            data: "username=" + username,
+            success: function (result) {
+                console.log(result);
+                dtd.resolve(result);
+            }
+        });
+        return dtd.promise();
+
+    }
+
     service.sendcode = function (data) {
         var dtd = $.Deferred();
         var username = data.username;
@@ -239,6 +256,24 @@ define([], function () {
                 // $("#totalInvest").text(totalInvest);
             }
 
+        });
+        return dtd.promise();
+    }
+
+    service.forgetPass = function (data) {
+        console.log(data);
+        var dtd = $.Deferred();
+        $.ajax({
+            url: "user/findpassword",
+            type: "post",
+            dataType: "json",
+            contentType: "application/json",
+            // data: JSON.stringify(data),
+            data:data,
+            success: function (result) {
+                console.log(result);
+                dtd.resolve(result);
+            }
         });
         return dtd.promise();
     }

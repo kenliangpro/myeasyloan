@@ -100,6 +100,7 @@ define([
                                      callback: function(result){}
                                  })
                              }else {
+
                                  window.location.href='#/';
                              }
                          });
