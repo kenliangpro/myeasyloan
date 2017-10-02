@@ -59,9 +59,10 @@
 				头像：
 				<br>
 			</div>
-			<div id="newHeaderImg">
-				　　{{data.headerImg}}
-			</div>
+			<!--<div id="newHeaderImg">-->
+				<!--　　{{data.headerImg}}-->
+			<!--</div>-->
+			<img src="{{data.headerImg}}"  alt="头像" />
 		</blockquote>
 
 		<blockquote style="background-color:#F0FFF0">
@@ -137,19 +138,16 @@
 								<input class="form-control" id="realName" placeholder="真实姓名" value="{{data.realName}}" type="text" required="required">
 							</div>
 
-							<!--  	      <div class="form-group">
-                                        <label for="headerImg">头像</label>
-                                        <img src="person_3.png" id="headerImg" alt="头像" />
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="exampleInputFile">File input</label>
-                                        <input type="file" id="exampleInputFile">
-                                      </div> -->
 
-							<div class="form-group">
-								<label for="headerImg">头像</label>
-								<input class="form-control" id="headerImg" placeholder="头像" value="{{data.headerImg}}">
-							</div>
+							  <div class="form-group">
+								<label for="headerImg">上传头像</label>
+								<input type="file" id="headerImg" value="{{data.headerImg}}">
+							  </div>
+
+							<!--<div class="form-group">-->
+								<!--<label for="headerImg">头像</label>-->
+								<!--<input class="form-control" id="headerImg" placeholder="头像" value="{{data.headerImg}}">-->
+							<!--</div>-->
 
 							<div class="form-group">
 								<label for="addr">现住地址</label>

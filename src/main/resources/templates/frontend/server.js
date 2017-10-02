@@ -72,6 +72,9 @@ app.post('/user/findpassword',function(request,response){
     proxy('user/findpassword',response,'POST',request);
 })
 
+app.post('/user/userCertification',function(request,response){
+    proxy('user/userCertification',response,'POST',request);
+})
 
 
 
