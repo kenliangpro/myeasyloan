@@ -1,18 +1,18 @@
 package com.easyloan.controller;
 
 import com.easyloan.bean.User;
+import com.easyloan.bean.UserExample;
 import com.easyloan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ToHtmlController {
 
 	@Autowired
 	UserService userService;
+
 
 	@RequestMapping("/testPage")
 	public String toReg(){
@@ -30,6 +30,17 @@ public class ToHtmlController {
 
 		return "userCertification";
 	}
+
+	@RequestMapping("/register1")
+	public String register1(){
+		return "register1";
+	}
+
+	@RequestMapping("/register2")
+	public String register2(){
+		return "register2";
+	}
+
 
 
 

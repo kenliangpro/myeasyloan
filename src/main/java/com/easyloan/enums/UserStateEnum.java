@@ -5,7 +5,7 @@ package com.easyloan.enums;
  */
 public enum UserStateEnum {
 
-
+    NEXTSTEP(1,"进入下一步"),
     LOGIN(1,"成功登陆"),
     SIGNUP(1,"成功注册"),
     LOANPLAN(1,"生成贷款计划成功"),

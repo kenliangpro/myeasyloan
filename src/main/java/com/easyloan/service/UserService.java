@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -38,8 +39,6 @@ public class UserService {
     @Autowired
     SafetyQuestionMapper safetyQuestionMapper;
 
-
-    Gson gson = new Gson();
 
     /**
      * 判断用户名是否存在
@@ -59,34 +58,64 @@ public class UserService {
 
 
     /**
-     * 用户注册
+     * 注册第一次，输入账号，密码，验证码
      *
      * @param userDto
      * @return
      */
-    public UserResult userRegister(UserDto userDto) {
+    public UserResult first_step_register(UserDto userDto) {
         if (!userDto.getVerification_code().equals(userDto.getSession_verification_code())) {
             return new UserResult(UserStateEnum.NONVALIDATE);
         } else if (isExist(userDto.getUsername())) {
             return new UserResult(UserStateEnum.EXSTIENS);
         }
-        //创建用户信息
+        return new UserResult(UserStateEnum.NEXTSTEP);
+    }
+
+    /**
+     * 注册的第二步，即完善个人信息
+     *
+     * @param userDto
+     * @param userInfo
+     * @return
+     */
+    public UserResult second_step_register(UserDto userDto, UserInfo userInfo, MultipartFile[] headerImgFile) {
+
+        String header_img_name = "";
+
+        //如果文件为空
+        if (headerImgFile.length == 0) {
+            return new UserResult(UserStateEnum.FILENULL);
+        } else if (!RegxDictionary.validateRegx(RegxDictionary.REGEX_EMAIL, userInfo.getEmail())) {
+            return new UserResult(UserStateEnum.ERROREMAIL);
+        } else if (!RegxDictionary.validateRegx(RegxDictionary.REGEX_MOBILE, userInfo.getPhone())) {
+            return new UserResult(UserStateEnum.ERRORPHONENUMBER);
+        }
+
+
+        header_img_name = FileUploadUtils.fileUpload(headerImgFile, FileUploadUtils.HEAD_IMG_PATH);
+        if (header_img_name == null) {
+            return new UserResult(UserStateEnum.FAILUPLOAD);
+        }
+
+        userInfo.setId(UUIDUtils.toPrimaryKey());
+        userInfo.setPhone(userDto.getUsername());
+        userInfo.setHeaderImg(header_img_name);
+
         User user = new User();
         user.setId(UUIDUtils.toPrimaryKey());
+        user.setUsername(userDto.getUsername());
         user.setPassword(Md5Utils.encode(userDto.getPassword()));
         user.setRegisterTime(FormatDate.formatDate(new Date()));
+        //是否删除
         user.setIsDel(0);
+        //是否被屏蔽
         user.setIsShield(0);
-        user.setUsername(userDto.getUsername());
-
-        //注册成功的时候，在创建userinfo
-        UserInfo userInfo = new UserInfo();
-        userInfo.setId(UUIDUtils.toPrimaryKey());
-        userInfo.setPhone(user.getUsername());
 
         if (saveUser(userInfo, user)) {
             return new UserResult(UserStateEnum.SIGNUP);
         }
+
         return new UserResult(UserStateEnum.UNKNOWNERROR);
 
     }
@@ -148,6 +177,7 @@ public class UserService {
      * @return
      */
     public boolean saveSafetyInfo(User user, SafetyQuestion safetyInfo) {
+
         safetyInfo.setSafetyLevel(setSafetyLevel(safetyInfo));
         if (safetyQuestionMapper.insertSelective(safetyInfo) > 0) {
             user.setSafetyQuestionId(safetyInfo.getId());
@@ -198,13 +228,13 @@ public class UserService {
     }
 
     /**
-     * 用户上传头像
+     * 用户更改头像
      *
      * @param headerImgFile
      * @param userinfo
      * @return
      */
-    public Msg uploadHeaderImg(MultipartFile[] headerImgFile, UserInfo userinfo) {
+    public Msg updateHeaderImg(MultipartFile[] headerImgFile, UserInfo userinfo) {
         if (headerImgFile.length == 0 || headerImgFile == null) {
             return new Msg(UserStateEnum.FILENULL);
         }
@@ -212,9 +242,8 @@ public class UserService {
         if (header_img != null) {
             userinfo.setHeaderImg(header_img);
             userInfoMapper.updateByPrimaryKey(userinfo);
-            return Msg.success().addExtraData("imgSrc", header_img);
+            return Msg.success().addExtraData("header_img", header_img);
         }
-
         return new Msg(UserStateEnum.FAILUPLOAD);
     }
 
@@ -224,7 +253,7 @@ public class UserService {
      * @param userinfo
      * @return
      */
-    public Msg perfectUserInfo(UserInfo userinfo) {
+    public Msg updateUserInfo(UserInfo userinfo) {
         if (userinfo != null) {
             if (!RegxDictionary.validateRegx(RegxDictionary.REGEX_EMAIL, userinfo.getEmail())) {
                 return new Msg(UserStateEnum.ERROREMAIL);
@@ -241,7 +270,7 @@ public class UserService {
 
 
     /**
-     * 完善用户信息
+     * 完善安全用户信息
      *
      * @param safetyInfo
      * @param user

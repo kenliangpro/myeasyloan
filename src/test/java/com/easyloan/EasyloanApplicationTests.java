@@ -1,26 +1,17 @@
 package com.easyloan;
 
-import com.easyloan.utils.AverageCapitalUtils;
-import com.easyloan.utils.FileUploadUtils;
+import com.easyloan.bean.User;
+import com.easyloan.bean.UserExample;
+import com.easyloan.dao.UserMapper;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mybatis.generator.api.MyBatisGenerator;
-import org.mybatis.generator.config.Configuration;
-import org.mybatis.generator.config.xml.ConfigurationParser;
-import org.mybatis.generator.internal.DefaultShellCallback;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class EasyloanApplicationTests {
 
+
 	@Autowired
-	FileUploadUtils fileUploadUtils;
+	UserMapper userMapper;
 
 	public static void main(String[] args) throws Exception {
 //		List<String> warnings = new ArrayList<String>();
@@ -32,6 +23,11 @@ public class EasyloanApplicationTests {
 //		MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
 //		myBatisGenerator.generate(null);
 
+	}
+
+	@Test
+	public void test(){
+		System.out.println(userMapper);
 	}
 
 }

@@ -76,13 +76,40 @@ public class UserController {
      * @param session
      * @return
      */
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/first_step_register", method = RequestMethod.POST)
     @ResponseBody
-    public UserResult userRegister(@RequestBody UserDto userDto, HttpSession session) {
-        UserResult userResult = null;
+    public UserResult first_step_register(@RequestBody UserDto userDto, HttpSession session) {
+
         userDto.setSession_verification_code((String) session.getAttribute("mobile_code"));
-        userResult = userService.userRegister(userDto);
+
+        UserResult userResult = userService.first_step_register(userDto);
+        if (userResult.getState() > 0) {
+            session.setAttribute("register_user", userDto);
+        }
         return userResult;
+    }
+
+    @RequestMapping(value = "/second_step_register", method = RequestMethod.POST)
+    @ResponseBody
+    public UserResult second_step_register(UserInfo userInfo, HttpSession session,
+                                           @RequestParam("headerImgFile") MultipartFile[] headerImgFile) {
+        UserDto userDto = (UserDto) session.getAttribute("register_user");
+        UserResult userResult = userService.second_step_register(userDto, userInfo,headerImgFile);
+        return userResult;
+    }
+
+    /**
+     * 修改用户信息
+     *
+     * @param userinfo
+     * @return
+     */
+    @RequestMapping(value = "/updateInfo", method = RequestMethod.POST)
+    @ResponseBody
+    public Msg updateInfo(@ModelAttribute("userInfo") UserInfo userinfo) {
+        Msg msg = null;
+        msg = userService.updateUserInfo(userinfo);
+        return msg;
     }
 
 
@@ -93,7 +120,7 @@ public class UserController {
      * @param session
      * @return
      */
-    @RequestMapping(value = "/sendcode/{username}", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/sendcode/{username}", method = RequestMethod.POST)
     @ResponseBody
     public Msg sendPhoneValidateCode(@PathVariable("username") String username, HttpSession session) {
         Msg msg = null;
@@ -111,7 +138,7 @@ public class UserController {
      * @param session
      * @return
      */
-    @RequestMapping(value = "/checkSafetyInfo", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/checkSafetyInfo", method = RequestMethod.GET)
     @ResponseBody
     public SafetyInfoResult selectSafetyInfo(HttpSession session) {
         Msg msg = null;
@@ -147,7 +174,6 @@ public class UserController {
         }
         return new UserInfoResult(UserStateEnum.UNLOGIN);
     }
-
 
 
     /**
@@ -186,48 +212,35 @@ public class UserController {
         }
     }
 
-    /**
-     * 增加用户信息
-     *
-     * @param userinfo
-     * @return
-     */
-    @RequestMapping(value = "/perfectInfo", produces = {"application/json;charset=UTF-8"})
-    @ResponseBody
-    public Msg perfectInfo(@ModelAttribute("userInfo") UserInfo userinfo) {
-        Msg msg = null;
-        msg = userService.perfectUserInfo(userinfo);
-        return msg;
-    }
 
     /**
      * 用户实名认证
      *
-     * @param headerImgFiles
+     * @param idNumberImgs
      * @param realName
      * @param idNumber
      * @param userinfo
      * @return
      */
-    @RequestMapping(value = "/userCertification", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/userCertification", method = RequestMethod.POST)
     @ResponseBody
-    public Msg userCertification(@RequestParam("headerImgFiles") MultipartFile[] headerImgFiles,
+    public Msg userCertification(@RequestParam("idNumberImgs") MultipartFile[] idNumberImgs,
                                  @RequestParam("realName") String realName,
                                  @RequestParam("idNumber") String idNumber,
                                  @ModelAttribute("userInfo") UserInfo userinfo) {
         Msg msg = null;
-        msg = userService.userCertification(idNumber, headerImgFiles, realName, userinfo);
+        msg = userService.userCertification(idNumber, idNumberImgs, realName, userinfo);
         return msg;
     }
 
     /**
-     * 增加用户安全信息
+     * 增加或修改用户安全信息
      *
      * @param session
      * @param safetyInfo
      * @return
      */
-    @RequestMapping(value = "/perfectSafetyInfo", produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/perfectSafetyInfo",method = RequestMethod.POST)
     @ResponseBody
     public Msg perfectSecurityInfo(HttpSession session, @ModelAttribute("safetyInfo") SafetyQuestion safetyInfo) {
         User user = (User) session.getAttribute("session_user");
@@ -237,21 +250,20 @@ public class UserController {
     }
 
     /**
-     * 用户上传头像
+     * 用户更新头像
      *
      * @param headerImgFile
      * @param userinfo
      * @return
      */
-    @RequestMapping(value = "uploadHeaderImg", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "updateHeaderImg", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public Msg uploadHeaderImg(@RequestParam("headerImgFile") MultipartFile[] headerImgFile, @ModelAttribute("userInfo") UserInfo userinfo) {
         Msg msg = null;
-        msg = userService.uploadHeaderImg(headerImgFile, userinfo);
+        msg = userService.updateHeaderImg(headerImgFile, userinfo);
         return msg;
 
     }
-
 
 
     /**
