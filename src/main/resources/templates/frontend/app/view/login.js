@@ -37,6 +37,7 @@ define([
                     code : code,
                 };
                 service.forgetPass(data);
+                window.location.href = '#/';
             }
 
         },

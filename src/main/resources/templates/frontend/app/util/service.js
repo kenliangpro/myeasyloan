@@ -75,33 +75,6 @@ define([], function () {
         return dtd.promise();
     }
 
-
-    // 	var dtd=$.Deferred();
-    // 	$.ajax({
-    // 		url:"/user/register",
-    // 		type:"post",
-    // 		dataType:"json",
-    // 		contentType:"application/json",
-    // 		data:JSON.stringify(data),
-    //
-    // 		success:function(res){
-    // 			console.log("done userRegister");
-    //
-    // 			if(isSuccess(res)){
-    // 				//执行成功会将res返回给then
-    // 				// console.log(data);
-    // 				// console.log(res.message);
-    // 				console.log(res);
-    // 				dtd.resolve(res);
-    // 			}else{
-    // 				dtd.reject();
-    // 			}
-    // 		}
-    // 	});
-    // 	return dtd.promise();
-    // }
-
-
     service.userLogin = function (data) {
         var dtd = $.Deferred();
         $.ajax({
@@ -205,31 +178,6 @@ define([], function () {
         return dtd.promise();
     }
 
-
-    //   $("#plan").click(function () {
-    //     var loan_amount = $("#loan_amount").val();
-    //     var loan_tern = $("#loan_tern").val();
-    //     var totalInvest;
-    //     $.ajax({
-    //         url: "/personalLoan/checkLoanPlan",
-    //         data: {
-    //             "loan_amount": loan_amount,
-    //             "loan_tern": loan_tern
-    //         },
-    //         type: "post",
-    //         success: function (data) {
-    //             console.log(data);
-    //             $("#loanplan").empty();
-    //             $.each(data.list, function (index, item) {
-    //                 $("#loanplan").append(item.detailsMonth + " 利息：" + item.perMonthInvest +
-    //                     " 每月本金:" + item.perMonthPrincipal +
-    //                     " 总额:" + (item.perMonthInvest + item.perMonthPrincipal) + "<br/>");
-    //                 totalInvest = item.totalInvest;
-    //             })
-    //             $("#totalInvest").text(totalInvest);
-    //         }
-    //     });
-    // });
     service.checkLoanPlan = function (data) {
         var dtd = $.Deferred();
         console.log(data);
@@ -257,10 +205,9 @@ define([], function () {
         console.log(data);
         var dtd = $.Deferred();
         $.ajax({
-            url: "user/findpassword",
+            url: "/user/findpassword",
             type: "post",
-            dataType: "json",
-            contentType: "application/json",
+
             // data: JSON.stringify(data),
             data: data,
             success: function (result) {
