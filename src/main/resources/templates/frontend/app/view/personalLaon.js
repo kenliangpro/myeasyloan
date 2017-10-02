@@ -13,9 +13,13 @@ define([
         },
 
         plan:function(){
-            var loan_amount = $('#loan_amount').val();
-            var loan_tern = $('#loan_tern').val();
-            if (loan_amount==''||loan_tern=='') {
+            var principal = $('#loan_amount').val();
+            var totalMonth = $('#loan_tern').val();
+            var data={
+                principal : principal,
+                totalMonth: totalMonth
+            };
+            if (principal==''||totalMonth=='') {
                 bootbox.confirm({ 
                   size: "small",
                   message: "请输入完整数据", 
@@ -23,14 +27,12 @@ define([
                 })
                 return false;
             }else{
-                var data = {
-                    loan_amount:loan_amount,
-                    loan_tern:loan_tern,
-                };
+
                 service.checkLoanPlan(data).then(function(res){
                     var list = res.list;
                     console.log(list);
                     $('#showPlan').show();
+
                     $.each(list, function (index, item) {
                         $("#loanplan").append("第"+item.detailsMonth+"个月" + " 利息：" + item.perMonthInvest +"元"+
                             " 每月本金:" + item.perMonthPrincipal +"元"+

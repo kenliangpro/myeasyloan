@@ -12,7 +12,7 @@ define([], function () {
         var username = data.username;
         console.log(username);
         $.ajax({
-            url: "user/forgetPassword" ,
+            url: "user/forgetPassword",
             type: "post",
             data: "username=" + username,
             success: function (result) {
@@ -120,7 +120,6 @@ define([], function () {
     }
 
 
-
     service.mock = function () {
         var dtd = $.Deferred();
         $.get('/mock', function (res) {
@@ -145,8 +144,8 @@ define([], function () {
             success: function (res) {
                 console.log("done Checkinfo");
 
-                    dtd.resolve(res);
-                    console.log(res);
+                dtd.resolve(res);
+                console.log(res);
                 // if (isSuccess(res)) {
                 //     //执行成功会将res返回给then
                 //     console.log(res.data);
@@ -178,8 +177,8 @@ define([], function () {
             type: "get",
             success: function (res) {
                 console.log("done checkSafetyInfo");
-                    dtd.resolve(res);
-                    console.log(res);
+                dtd.resolve(res);
+                console.log(res);
                 // if (isSuccess(res)) {
                 //     dtd.resolve(res);
                 //     console.log(res.data);
@@ -196,11 +195,7 @@ define([], function () {
         $.ajax({
             url: "/user/perfectSafetyInfo",
             type: "post",
-            dataType: "json",
-            contentType: "application/json",
-            // data: JSON.stringify(data),
             data: data,
-
             success: function (res) {
                 console.log("done perfectSafetyInfo");
                 dtd.resolve(res);
@@ -209,7 +204,6 @@ define([], function () {
         });
         return dtd.promise();
     }
-
 
 
     //   $("#plan").click(function () {
@@ -240,13 +234,12 @@ define([], function () {
         var dtd = $.Deferred();
         console.log(data);
         $.ajax({
-            url: "/personalLoan/checkLoanPlan",
+            url: "/personalLoan/checkPlan",
             type: "post",
-            dataType: "json",
-            contentType: "application/json",
-            data: JSON.stringify(data),
+            data: data,
             success: function (res) {
                 dtd.resolve(res);
+                console.log(res);
                 // $.each(data.list, function (index, item) {
                 //     $("#loanplan").append(item.detailsMonth + " 利息：" + item.perMonthInvest +
                 //         " 每月本金:" + item.perMonthPrincipal +
@@ -269,7 +262,7 @@ define([], function () {
             dataType: "json",
             contentType: "application/json",
             // data: JSON.stringify(data),
-            data:data,
+            data: data,
             success: function (result) {
                 console.log(result);
                 dtd.resolve(result);
