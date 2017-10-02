@@ -24,4 +24,13 @@ public class UserResult extends Result<User> {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return "UserResult{" +
+                "state=" + state +
+                ", message='" + message + '\'' +
+                ", data=" + data +
+                ", extendDate=" + extendDate +
+                '}';
+    }
 }

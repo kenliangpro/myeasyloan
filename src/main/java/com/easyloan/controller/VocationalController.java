@@ -2,10 +2,9 @@ package com.easyloan.controller;
 
 import com.easyloan.bean.User;
 import com.easyloan.dto.Msg;
-import com.easyloan.dto.PersonLoanDto;
 import com.easyloan.dto.VocationalResult;
 import com.easyloan.enums.UserStateEnum;
-import com.easyloan.service.BorrowMoneyService;
+import com.easyloan.service.BorrowService;
 import com.easyloan.service.PersonalLoanService;
 import com.easyloan.service.UserService;
 import com.easyloan.utils.VocationalUtils;
@@ -23,7 +22,7 @@ public class VocationalController {
     @Autowired
     PersonalLoanService personalLoanService;
     @Autowired
-    BorrowMoneyService borrowMoneyService;
+    BorrowService borrowMoneyService;
     @Autowired
     UserService userService;
 
@@ -62,6 +61,7 @@ public class VocationalController {
     @ResponseBody
     public VocationalResult personalLoanPlan(@RequestParam("principal") double principal,
                                              @RequestParam("totalMonth") int totalMonth) {
+
         return VocationalUtils.generateLoanPlan(principal, VocationalUtils.PERSONAL_LOAN_YEAR_RATE, totalMonth);
     }
 

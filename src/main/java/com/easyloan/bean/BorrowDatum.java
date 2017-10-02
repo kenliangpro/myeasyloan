@@ -9,6 +9,8 @@ public class BorrowDatum {
 
     private Double totalInvest;
 
+    private String identityFile;
+
     public String getId() {
         return id;
     }
@@ -39,5 +41,13 @@ public class BorrowDatum {
 
     public void setTotalInvest(Double totalInvest) {
         this.totalInvest = totalInvest;
+    }
+
+    public String getIdentityFile() {
+        return identityFile;
+    }
+
+    public void setIdentityFile(String identityFile) {
+        this.identityFile = identityFile == null ? null : identityFile.trim();
     }
 }

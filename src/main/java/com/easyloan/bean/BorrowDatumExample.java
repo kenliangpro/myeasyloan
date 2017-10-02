@@ -373,6 +373,76 @@ public class BorrowDatumExample {
             addCriterion("total_invest not between", value1, value2, "totalInvest");
             return (Criteria) this;
         }
+
+        public Criteria andIdentityFileIsNull() {
+            addCriterion("identity_file is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentityFileIsNotNull() {
+            addCriterion("identity_file is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentityFileEqualTo(String value) {
+            addCriterion("identity_file =", value, "identityFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentityFileNotEqualTo(String value) {
+            addCriterion("identity_file <>", value, "identityFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentityFileGreaterThan(String value) {
+            addCriterion("identity_file >", value, "identityFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentityFileGreaterThanOrEqualTo(String value) {
+            addCriterion("identity_file >=", value, "identityFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentityFileLessThan(String value) {
+            addCriterion("identity_file <", value, "identityFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentityFileLessThanOrEqualTo(String value) {
+            addCriterion("identity_file <=", value, "identityFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentityFileLike(String value) {
+            addCriterion("identity_file like", value, "identityFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentityFileNotLike(String value) {
+            addCriterion("identity_file not like", value, "identityFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentityFileIn(List<String> values) {
+            addCriterion("identity_file in", values, "identityFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentityFileNotIn(List<String> values) {
+            addCriterion("identity_file not in", values, "identityFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentityFileBetween(String value1, String value2) {
+            addCriterion("identity_file between", value1, value2, "identityFile");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdentityFileNotBetween(String value1, String value2) {
+            addCriterion("identity_file not between", value1, value2, "identityFile");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

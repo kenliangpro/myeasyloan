@@ -1,9 +1,9 @@
 package com.easyloan.controller;
 
+import com.easyloan.bean.PersonalLoan;
 import com.easyloan.bean.User;
 import com.easyloan.dao.UserInfoMapper;
 import com.easyloan.dto.Msg;
-import com.easyloan.dto.PersonLoanDto;
 
 import com.easyloan.service.PersonalLoanService;
 import com.easyloan.service.UserService;
@@ -11,7 +11,9 @@ import com.easyloan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 
@@ -50,16 +52,16 @@ public class PersonalLoanController {
 
     }
 
-
     @RequestMapping(value = "/personalLoanExecution")
     @ResponseBody
-    public Msg personalLoanExecution(PersonLoanDto personLoanDto, HttpSession session) {
+    public Msg personalLoanExecution(PersonalLoan personalLoan,HttpSession session,
+                                     @RequestParam("mortgage_file") MultipartFile[] mortgage_file) {
         User user = (User) session.getAttribute("session_user");
         Double principal = (Double) session.getAttribute("principal");
         int totalMonth = (Integer) session.getAttribute("totalMonth");
-        personLoanDto.setLoan_tern(totalMonth);
-        personLoanDto.setLoan_amount(principal);
-        return personalLoanService.personalLoanExecution(personLoanDto, user);
+        personalLoan.setLoanAmount(principal);
+        personalLoan.setLoanTern(totalMonth);
+        return personalLoanService.personalLoanExecution(personalLoan, user,mortgage_file);
     }
 
 

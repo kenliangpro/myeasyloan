@@ -4,21 +4,108 @@
     <meta charset="UTF-8"/>
     <title>实名认证</title>
     <script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="/static/js/jquery.form.js"></script>
+
+    <!--<script src="/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>-->
+    <link href="/static/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" rel="stylesheet"/>
+    <link href="/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <link href="/static/bootstrap-fileinput-master/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/static/bootstrap-fileinput-master/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+
+    <script src="/static/areaSelect/distpicker.data.js"></script>
+    <script src="/static/areaSelect/distpicker.js"></script>
+    <script src="/static/areaSelect/main.js"></script>
+
+
+    <script src="/static/bootstrap-fileinput-master/js/fileinput.js" type="text/javascript"></script>
+    <script src="/static/bootstrap-fileinput-master/js/fileinput_locale_zh.js" type="text/javascript"></script>
+
+
     <script>
 
 
     </script>
+
 </head>
 <body>
 
 <form method="POST" enctype="multipart/form-data" id="uploadForm" action="user/userCertification">
-    文件：<input type="file" name="headerImgFiles"/>
-    文件：<input type="file" name="headerImgFiles"/>
+    <!--文件：<input type="file" name="headerImgFiles"/>-->
+    <!--文件：<input type="file" name="headerImgFiles"/>-->
+    <input id="fileupload" type="file" multiple="" class="file" data-min-file-count="0" name="headerImgFiles"/>
     真实姓名：<input type="text" name="realName"/>
     身份证：<input type="text" name="idNumber"/>
     <input type="submit" value="上传" id="uploadImg"/>
 </form>
+
+
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">请选择</label>
+        <div class="col-sm-10" onchange="selectArea()" id="addr" >
+            <!-- <input type="text" class="form-control" placeholder="地址" value="" name="addr" id="addr"> -->
+            <select class="form-control" id="province"></select>
+            <select class="form-control" id="city"></select>
+            <select class="form-control" id="district"></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">具体位置</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="具体位置" value="" name="addrDetails" id="addrDetails"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">收货人名字</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="名字" value="" id="name" name="name"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">电话</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="电话" value="" id="phone" name="phone"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="button" class="btn btn-default" id="add_addr">保存</button>
+        </div>
+    </div>
+</form>
+
+<script>
+
+    $("#addr").distpicker({
+        autoSelect: false
+    });
+
+    $('#selectBtn').on('click', function () {
+        $.areaSelect();
+    });
+
+    $('#fileupload').fileinput({
+        language: 'zh',
+        allowedFileExtensions: ['jpg', 'png', 'gif', 'jpeg', 'bmp'],
+        overwriteInitial: false,
+        maxFileSize: 1000,
+        maxFilesNum: 10,
+        slugCallback: function (filename) {
+            return filename.replace('(', '_').replace(']', '_');
+        }
+
+    });
+
+    function selectArea() {
+        $("#addrDetails").val($("#province").val() + $("#city").val() + $("#district").val());
+    }
+
+
+</script>
+
 
 </body>
 </html>

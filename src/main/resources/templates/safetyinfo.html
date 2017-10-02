@@ -9,14 +9,19 @@
 
         $(function () {
             $("#safetycommit").click(function () {
+                var data = {
+                    safetyEmail:$("#safety_email").val(),
+                    question:$("#question").val(),
+                    answer:$("#answer").val(),
+                    paymentPassword:$("#paymentPassword").val()
+                }
                 $.ajax({
                     url: "user/perfectSafetyInfo",
                     type: "post",
-                    data: $("#safetyForm").serialize(),
+                    data: data,
                     success: function (result) {
                         console.log(result);
                     }
-
                 });
             });
         })

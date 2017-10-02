@@ -1,26 +1,27 @@
 package com.easyloan.bean;
 
 public class BorrowMoney {
+
     private String id;
-
+    //借钱金额
     private Double borrowAmount;
-
+    //借钱期限
     private Integer borrowTern;
-
+    //单位信息
     private String unitInfo;
-
+    //财务信息
     private String financialInfo;
-
+    //公司名称
     private String companyName;
-
+    //公司法人
     private String companyLegalPerson;
-
+    //公司注册资金
     private Integer companyRegisteredCapital;
-
+    //公司地址
     private String companyAddr;
-
+    //公司编号
     private String companyNum;
-
+    //融资资金
     private Integer companyFinancing;
 
     private Integer status;
@@ -30,11 +31,11 @@ public class BorrowMoney {
     private String userId;
 
     private String createTime;
-
+    //银行卡信息
     private String creditCard;
 
     private String borrowDeadline;
-
+    //电话
     private String phone;
 
     public String getId() {
@@ -179,5 +180,29 @@ public class BorrowMoney {
 
     public void setPhone(String phone) {
         this.phone = phone == null ? null : phone.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "BorrowMoney{" +
+                "id='" + id + '\'' +
+                ", borrowAmount=" + borrowAmount +
+                ", borrowTern=" + borrowTern +
+                ", unitInfo='" + unitInfo + '\'' +
+                ", financialInfo='" + financialInfo + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", companyLegalPerson='" + companyLegalPerson + '\'' +
+                ", companyRegisteredCapital=" + companyRegisteredCapital +
+                ", companyAddr='" + companyAddr + '\'' +
+                ", companyNum='" + companyNum + '\'' +
+                ", companyFinancing=" + companyFinancing +
+                ", status=" + status +
+                ", borrowDatumId='" + borrowDatumId + '\'' +
+                ", userId='" + userId + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", creditCard='" + creditCard + '\'' +
+                ", borrowDeadline='" + borrowDeadline + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
     }
 }

@@ -10,11 +10,17 @@ import java.io.File;
 
 public class FileUploadUtils {
 
-    public static final String LOAN_DATUM_PATH = "/Users/kenliang/loan_pic/personal_loan_img/";
+    public static final String PERSONAL_DATUM_PATH = "/Users/kenliang/loan_pic/personal_loan_img/";
 
-    public static final String HEAD_IMG_PATH = "/Users/kenliang/loan_pic/loan_img/";
+    public static final String HEAD_IMG_PATH = "/Users/kenliang/loan_pic/header_img/";
 
     public static final String ID_NUMBER_IMG_PATH = "/Users/kenliang/loan_pic/personal_certification_img/";
+
+    public static final String BORROW_DATUM_PATH = "/Users/kenliang/loan_pic/borrow_img/";
+
+    public static final String COMPANY_MORTGAGE_PATH = "/Users/kenliang/loan_pic/company_mortgage_img/";
+
+    public static final String COMPANY_CORRELATION_PATH = "/Users/kenliang/loan_pic/company_correlation_img/";
 
     public static String fileUpload(MultipartFile[] files, String path) {
         String imgs_name = "";

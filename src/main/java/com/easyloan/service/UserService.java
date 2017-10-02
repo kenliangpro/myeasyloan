@@ -38,12 +38,6 @@ public class UserService {
     @Autowired
     SafetyQuestionMapper safetyQuestionMapper;
 
-//    @Value("${web.headImg.upload-path}")
-//    private String headerImgPath;
-//
-//    @Value("${web.userCertification.idNumber-ImgPath}")
-//    private String idNumberImgPath;
-
 
     Gson gson = new Gson();
 
@@ -185,24 +179,8 @@ public class UserService {
             return new Msg(UserStateEnum.ERRORIDNUMBER);
         }
 
-//        for (int i = 0; i < idNumberImgs.length; i++) {
-//            String fileName = idNumberImgs[i].getOriginalFilename();
-//            File dest = new File(this.idNumberImgPath + fileName);
-//            if (!dest.getParentFile().exists()) {
-//                dest.getParentFile().mkdirs();
-//            }
-//            try {
-//                idNumberImgs[i].transferTo(dest);
-//                img_names += dest.getName() + ",";
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//                return new Msg(UserStateEnum.FAILUPLOAD);
-//            }
-//
-//        }
-        img_names = FileUploadUtils.fileUpload(idNumberImgs,FileUploadUtils.ID_NUMBER_IMG_PATH);
-        if(img_names == null) {
+        img_names = FileUploadUtils.fileUpload(idNumberImgs, FileUploadUtils.ID_NUMBER_IMG_PATH);
+        if (img_names == null) {
             return new Msg(UserStateEnum.FAILUPLOAD);
         }
 
@@ -230,29 +208,13 @@ public class UserService {
         if (headerImgFile.length == 0 || headerImgFile == null) {
             return new Msg(UserStateEnum.FILENULL);
         }
-        String header_img = FileUploadUtils.fileUpload(headerImgFile,FileUploadUtils.HEAD_IMG_PATH);
-        if(header_img !=null) {
+        String header_img = FileUploadUtils.fileUpload(headerImgFile, FileUploadUtils.HEAD_IMG_PATH);
+        if (header_img != null) {
             userinfo.setHeaderImg(header_img);
             userInfoMapper.updateByPrimaryKey(userinfo);
             return Msg.success().addExtraData("imgSrc", header_img);
         }
-//        String fileName = headerImgFile.getOriginalFilename();
-//        File dest = new File(this.headerImgPath + fileName);
-//        if (!dest.getParentFile().exists()) {
-//            dest.getParentFile().mkdirs();
-//        }
-//        try {
-//            // 已经创建了userinfo，即user中的userinfo_id不为空
-//            if (userinfo.getId() != null) {
-//                headerImgFile.transferTo(dest);
-//                userinfo.setHeaderImg(dest.getName());
-//                userInfoMapper.updateByPrimaryKey(userinfo);
-//                return Msg.success().addExtraData("imgSrc", dest.getName());
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return new Msg(UserStateEnum.FAILUPLOAD);
-//        }
+
         return new Msg(UserStateEnum.FAILUPLOAD);
     }
 

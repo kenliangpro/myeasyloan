@@ -10,8 +10,6 @@ public class AverageCapital {
     private double perMonthPrincipal;
     //总利息
     private double totalInvest;
-    //年利率
-//    public final static double yearRate = 0.144;
 
     private int detailsMonth;
 
@@ -38,11 +36,6 @@ public class AverageCapital {
     public void setTotalInvest(double totalInvest) {
         this.totalInvest = totalInvest;
     }
-
-//    public static double getYearRate() {
-//        return yearRate;
-//    }
-
 
 
     public int getDetailsMonth() {

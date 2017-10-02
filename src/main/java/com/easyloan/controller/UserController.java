@@ -134,7 +134,7 @@ public class UserController {
      * @param session
      * @return
      */
-    @RequestMapping(value = "/checkUserInfo", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/checkUserInfo", method = RequestMethod.GET)
     @ResponseBody
     public UserInfoResult selectUserInfo(HttpSession session) {
         Msg msg = null;

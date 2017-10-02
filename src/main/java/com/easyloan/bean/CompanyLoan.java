@@ -120,4 +120,22 @@ public class CompanyLoan {
     public void setPhone(String phone) {
         this.phone = phone == null ? null : phone.trim();
     }
+
+    @Override
+    public String toString() {
+        return "CompanyLoan{" +
+                "id='" + id + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", loanAmount=" + loanAmount +
+                ", loanTern=" + loanTern +
+                ", loanDeadline='" + loanDeadline + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", addr='" + addr + '\'' +
+                ", status=" + status +
+                ", datumId='" + datumId + '\'' +
+                ", userId='" + userId + '\'' +
+                ", creditCard='" + creditCard + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
 }

@@ -6,6 +6,7 @@
     <result column="borrow_file" property="borrowFile" jdbcType="VARCHAR" />
     <result column="borrow_details" property="borrowDetails" jdbcType="VARCHAR" />
     <result column="total_invest" property="totalInvest" jdbcType="DOUBLE" />
+    <result column="identity_file" property="identityFile" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -66,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, borrow_file, borrow_details, total_invest
+    id, borrow_file, borrow_details, total_invest, identity_file
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.easyloan.bean.BorrowDatumExample" >
     select
@@ -100,9 +101,9 @@
   </delete>
   <insert id="insert" parameterType="com.easyloan.bean.BorrowDatum" >
     insert into loan_borrow_datum (id, borrow_file, borrow_details, 
-      total_invest)
+      total_invest, identity_file)
     values (#{id,jdbcType=VARCHAR}, #{borrowFile,jdbcType=VARCHAR}, #{borrowDetails,jdbcType=VARCHAR}, 
-      #{totalInvest,jdbcType=DOUBLE})
+      #{totalInvest,jdbcType=DOUBLE}, #{identityFile,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.easyloan.bean.BorrowDatum" >
     insert into loan_borrow_datum
@@ -119,6 +120,9 @@
       <if test="totalInvest != null" >
         total_invest,
       </if>
+      <if test="identityFile != null" >
+        identity_file,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -132,6 +136,9 @@
       </if>
       <if test="totalInvest != null" >
         #{totalInvest,jdbcType=DOUBLE},
+      </if>
+      <if test="identityFile != null" >
+        #{identityFile,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -156,6 +163,9 @@
       <if test="record.totalInvest != null" >
         total_invest = #{record.totalInvest,jdbcType=DOUBLE},
       </if>
+      <if test="record.identityFile != null" >
+        identity_file = #{record.identityFile,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -166,7 +176,8 @@
     set id = #{record.id,jdbcType=VARCHAR},
       borrow_file = #{record.borrowFile,jdbcType=VARCHAR},
       borrow_details = #{record.borrowDetails,jdbcType=VARCHAR},
-      total_invest = #{record.totalInvest,jdbcType=DOUBLE}
+      total_invest = #{record.totalInvest,jdbcType=DOUBLE},
+      identity_file = #{record.identityFile,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -183,6 +194,9 @@
       <if test="totalInvest != null" >
         total_invest = #{totalInvest,jdbcType=DOUBLE},
       </if>
+      <if test="identityFile != null" >
+        identity_file = #{identityFile,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -190,7 +204,8 @@
     update loan_borrow_datum
     set borrow_file = #{borrowFile,jdbcType=VARCHAR},
       borrow_details = #{borrowDetails,jdbcType=VARCHAR},
-      total_invest = #{totalInvest,jdbcType=DOUBLE}
+      total_invest = #{totalInvest,jdbcType=DOUBLE},
+      identity_file = #{identityFile,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

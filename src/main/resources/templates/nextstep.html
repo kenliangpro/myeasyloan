@@ -4,22 +4,55 @@
     <meta charset="UTF-8"/>
     <title>下一步</title>
     <script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
-    <script>
-        $(function () {
 
-        })
-    </script>
 </head>
 <body>
-    <form method="POST" enctype="multipart/form-data" id="uploadForm" action="/personalLoan/personalLoanExecution">
-        文件1：<input type="file" name="loanDatums"/><br/>
-        文件2：<input type="file" name="loanDatums"/><br/>
-        phone:<input type="text" name="phone"/><br/>
-        addr:<input type="text" name="addr"/><br/>
-        银行卡号:<input type="text" name="creditCard"/>
-        <!--支付密码：<input type="password" name="paymentPassword"/>-->
+<form method="POST" enctype="multipart/form-data"  action="/personalLoan/personalLoanExecution">
+    文件1：<input type="file" name="mortgage_file"/><br/>
+    文件2：<input type="file" name="mortgage_file"/><br/>
+    phone:<input type="text" name="phone"/><br/>
+    addr:<input type="text" name="addr"/><br/>
+    银行卡号:<input type="text" name="creditCard"/>
 
-        <input type="submit" value="进行借贷" id="uploadImg"/>
-    </form>
+    <input type="submit" value="进行借贷" />
+</form>
 </body>
+<hr/>
+<body>
+<form method="POST" enctype="multipart/form-data"  action="/borrow/borrowExecution">
+    借钱资料凭证1：<input type="file" name="borrow_file"/><br/>
+    借钱资料凭证2：<input type="file" name="borrow_file"/><br/>
+    单位信息:<input type="text" name="unitInfo"/><br/>
+    财务信息:<input type="text" name="financialInfo"/><br/>
+    公司名称:<input type="text" name="companyName"/><br/>
+    公司法人:<input type="text" name="companyLegalPerson"/><br/>
+    公司注册资金:<input type="number" name="companyRegisteredCapital"/><br/>
+    公司地址:<input type="text" name="companyAddr"/><br/>
+    公司编号:<input type="text" name="companyNum"/><br/>
+    融资资金:<input type="number" name="companyFinancing"/><br/>
+    个人电话:<input type="text" name="phone"/><br/>
+    银行卡号:<input type="number" name="creditCard"/><br/>
+
+
+    <input type="submit" value="进行借钱" />
+</form>
+
+<hr/>
+
+<form method="POST" enctype="multipart/form-data"  action="/companyLoan/companyLoanExecution">
+    企业相关资料1：<input type="file" name="company_file"/><br/>
+    企业相关资料2：<input type="file" name="company_file"/><br/>
+
+    企业相关抵押资料1：<input type="file" name="mortgage_file"/><br/>
+    企业相关抵押资料2：<input type="file" name="mortgage_file"/><br/>
+
+    phone:<input type="text" name="phone"/><br/>
+    公司名称:<input type="text" name="companyName"/><br/>
+    addr:<input type="text" name="addr"/><br/>
+    银行卡号:<input type="text" name="creditCard"/>
+
+    <input type="submit" value="进行借钱" />
+</form>
+</body>
+
 </html>

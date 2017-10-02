@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
-public class FileConfig extends WebMvcConfigurerAdapter{
+public class PathConfig extends WebMvcConfigurerAdapter{
 	
 	@Value("${web.headImg.upload-path}")
 	private String headImgPath;
