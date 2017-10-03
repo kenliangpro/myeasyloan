@@ -188,13 +188,6 @@ define([], function () {
             success: function (res) {
                 dtd.resolve(res);
                 console.log(res);
-                // $.each(data.list, function (index, item) {
-                //     $("#loanplan").append(item.detailsMonth + " 利息：" + item.perMonthInvest +
-                //         " 每月本金:" + item.perMonthPrincipal +
-                //         " 总额:" + (item.perMonthInvest + item.perMonthPrincipal) + "<br/>");
-                //     totalInvest = item.totalInvest;
-                // })
-                // $("#totalInvest").text(totalInvest);
             }
 
         });
@@ -207,8 +200,6 @@ define([], function () {
         $.ajax({
             url: "/user/findpassword",
             type: "post",
-
-            // data: JSON.stringify(data),
             data: data,
             success: function (result) {
                 console.log(result);

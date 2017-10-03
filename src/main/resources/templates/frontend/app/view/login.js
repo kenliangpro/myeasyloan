@@ -131,7 +131,13 @@ define([
                             message: "账号或密码错误",
                             callback: function(result){}
                         })
-                    }else {
+                    }else if(state==-2){
+                        bootbox.confirm({
+                            size: "small",
+                            message: "验证码错误",
+                            callback: function(result){}
+                        })
+                    } else {
                         window.location.href="#/";
                     }
                 });
